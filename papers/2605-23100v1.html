@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Four Simple Proprioceptive Estimators for Legged Robots</title>
+</head>
+<body>
+<h1>Four Simple Proprioceptive Estimators for Legged Robots</h1>
+
+<p><strong>Authors:</strong> Frank Dellaert, Chiyun Noh, Varun Agrawal, Ayoung Kim</p>
+<p><strong>Published:</strong> 2026-05-21</p>
+
+<p>
+<a href="https://arxiv.org/abs/2605.23100v1">View on arXiv</a>
+</p>
+
+<h2>Abstract</h2>
+
+<p>Legged robots carry an IMU, but the inertial solution drifts because consumer-grade IMUs are noisy. However, the feet create intermittent contacts with the environment that can be used to mitigate that drift. This report develops a sequence of increasingly expressive legged robot state estimators that leverage this. In all cases, the floating-base state comprises attitude, position, velocity, and IMU biases. To model foot contacts, we start from the contact-aided invariant EKF of Hartley et al., albeit at a reduced contact update rate. This is then augmented by replacing the measurement update by a small factor graph. Finally, we turn the same factors into a fixed-lag smoother with contact-episode footholds, with and without an evolving IMU bias. To facilitate reproducibility and further research in proprioceptive legged odometry, all four variants are available in GTSAM (Dellaert et. al), and we additionally provide a ROS2-compatible implementation.</p>
+
+</body>
+</html>
