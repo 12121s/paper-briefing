@@ -32,36 +32,30 @@ ARXIV_QUERY = (
 MAX_RESULTS = 3
 
 PRIORITY_TERMS = [
-    "hci",
-    "human-computer interaction",
     "rehabilitation",
-    "wearable sensing",
+    "posture",
     "wearable",
     "imu",
-    "inertial",
+    "human motion",
     "biofeedback",
     "assistive",
-    "posture",
-    "movement assessment",
-    "movement training",
+    "hci",
+    "participatory",
+    "therapy",
 ]
 
 EXCLUSION_TERMS = [
-    "pedestrian",
-    "pedestrian dead reckoning",
-    "dead reckoning",
+    "robot",
+    "robotics",
+    "legged",
+    "manipulation",
+    "industrial",
     "localization",
+    "dead reckoning",
     "radio",
-    "radio system",
-    "radio systems",
-    "wireless network",
-    "networking",
-    "signal processing",
-    "signal processing only",
-    "chip",
-    "accelerator",
-    "nand",
-    "cim architecture",
+    "wireless",
+    "wrench",
+    "autonomous driving",
 ]
 
 MIN_RELEVANCE_SCORE = 1
