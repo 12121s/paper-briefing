@@ -9,8 +9,8 @@
     "link": "https://arxiv.org/abs/2605.22715v1",
     "published": "2026-05-21",
     "categories": "cs.CV, cs.AI, cs.CL, cs.HC",
-    "method": "arXiv metadata search",
-    "status": "To Read",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
     "keywords": [
       "HCI",
       "rehabilitation",
@@ -24,49 +24,13 @@
     "abstract": [
       "As wearable and mobile devices become increasingly embedded in daily life, they offer a practical way to continuously sense human motion in the wild. But inertial signals are highly dependent on the sensing setup, including body location, mounting position, sensor orientation, device hardware, and sampling protocol. This setup dependence makes it difficult to learn motion representations that transfer across devices and datasets, and limits the broader use of wearable IMUs beyond closed-set recognition. We introduce AnyMo, a geometry-aware framework for setup-agnostic human motion modeling. AnyMo uses physics-grounded IMU simulation over dense body-surface placements to generate diverse and plausible synthetic signals, pre-trains a graph encoder from paired synthetic placement views and masked partial observations, tokenizes multi-position IMU into full-body motion tokens, and aligns these tokens with an LLM for motion-language understanding. We evaluate AnyMo on three complementary tasks: zero-shot activity recognition across 14 unseen downstream datasets, cross-modal retrieval, and wearable IMU motion captioning, where it improves average Accuracy/F1/R@2 by 11.7\\%/11.6\\%/22.6\\% on HAR, increases zero-shot IMU-to-text and text-to-IMU retrieval MRR by 15.9\\% and 28.6\\%, respectively, and improves zero-shot captioning BERT-F1 by 18.8\\%. These results support AnyMo as a generalist model for wearable motion understanding in the wild. Project page: https://baiyuchen.com/project/AnyMo."
     ],
-    "terms": [
-      [
-        "IMU / inertial sensing",
-        "움직임, 자세, 균형 상태를 측정하기 위해 사용하는 관성 센서 기반 측정 방식입니다."
-      ],
-      [
-        "Movement assessment",
-        "사람의 움직임, 자세, 균형, 수행 상태를 평가하는 연구 영역입니다."
-      ],
-      [
-        "Biofeedback",
-        "센서로 측정한 신체 또는 행동 데이터를 사용자에게 다시 보여주어 자기 조절과 학습을 돕는 피드백 방식입니다."
-      ]
+    "relevance_score": 5,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
     ],
-    "researchQuestions": [
-      "이 논문이 wearable sensing, movement assessment, rehabilitation, HCI 중 어떤 축과 연결되는가?",
-      "이 논문의 방법 또는 시스템 설계가 재활승마/움직임 피드백 서비스에 어떻게 확장될 수 있는가?"
-    ],
-    "design": [
-      "현재 페이지는 arXiv metadata와 abstract 기반 자동 요약입니다.",
-      "정밀 리뷰가 필요한 논문은 원문 PDF 확인 후 연구 방법론, 데이터, 실험 설계를 별도로 보완해야 합니다."
-    ],
-    "findings": [
-      "자동 수집 단계에서는 abstract 기반 핵심 내용만 저장합니다.",
-      "상세 결과와 수치 성능은 원문 확인 후 수동 또는 LLM 요약 단계에서 보완합니다."
-    ],
-    "interpretation": [
-      "이 논문은 내 연구 관심사와 일부 키워드 또는 분야 축에서 연결될 가능성이 있습니다.",
-      "직접 관련성은 원문 확인 후 To Read, Reading, Used in Thesis 등으로 분류합니다."
-    ],
-    "contributions": [
-      "최신 연구 후보를 자동으로 수집해 데일리 브리핑 후보군으로 축적합니다."
-    ],
-    "limitations": [
-      "arXiv metadata 기반 검색이므로 relevance가 완벽하지 않을 수 있습니다.",
-      "논문에 없는 주장은 생성하지 않고, 연구 연결점은 별도 해석으로 관리해야 합니다."
-    ],
-    "significance": [
-      "IMU, movement assessment, biofeedback, rehabilitation HCI 관련 최신 연구 흐름을 추적하는 데 활용할 수 있습니다."
-    ],
-    "connection": [
-      "재활승마를 직접 다루지 않더라도, 움직임 평가·센서 기반 피드백·재활 상호작용 설계 관점에서 참고 가능성을 검토할 수 있습니다."
-    ],
+    "pdf_deep_review_needed": true,
     "page": "papers/2605-22715v1.html"
   }
 ]
