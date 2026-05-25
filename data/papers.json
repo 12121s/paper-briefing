@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "id": "2605-00890",
+    "title": "Skeleton-Based Posture Classification to Promote Safer Walker-Assisted Gait in Older Adults",
+    "authors": "Sergio D. Sierra M., Monica Sinha, Marcela Múnera, Carlos A. Cifuentes",
+    "arxiv_id": "2605.00890",
+    "link": "https://arxiv.org/abs/2605.00890",
+    "published": "2026-04-27",
+    "categories": "cs.CV, cs.AI, cs.LG",
+    "priority": "1순위",
+    "keywords": [
+      "posture classification",
+      "movement assessment",
+      "rehabilitation technology",
+      "assistive interaction",
+      "safety assessment"
+    ],
+    "page": "papers/2605-00890.html"
+  },
+  {
+    "id": "2605-00913",
+    "title": "Leveraging Imperfect Medical Data: A Manifold-Consistent Spatio-Temporal Network for Sensor-based Human Activity Recognition",
+    "authors": "Jiangtao Fan, Anish Jindal, Amir Atapour-Abarghouei",
+    "arxiv_id": "2605.00913",
+    "link": "https://arxiv.org/abs/2605.00913",
+    "published": "2026-04-29",
+    "categories": "cs.CV, cs.AI",
+    "priority": "2순위",
+    "keywords": [
+      "sensor-based HAR",
+      "wearable sensing",
+      "imperfect sensing",
+      "movement assessment",
+      "robust model"
+    ],
+    "page": "papers/2605-00913.html"
+  },
+  {
+    "id": "2604-26214",
+    "title": "Exploring the Feasibility and Acceptability of AI-Mediated Serious Illness Conversations in the Emergency Department",
+    "authors": "Hasibur Rahman, Kenji Numata, Evelyn T Lai, Maria Cheriyan, Adrian Haimovich, Kei Ouchi, Smit Desai",
+    "arxiv_id": "2604.26214",
+    "link": "https://arxiv.org/abs/2604.26214",
+    "published": "2026-04-29",
+    "categories": "cs.HC",
+    "priority": "3순위",
+    "keywords": [
+      "healthcare HCI",
+      "acceptability",
+      "AI-mediated interaction",
+      "participatory design",
+      "feedback boundary"
+    ],
+    "page": "papers/2604-26214.html"
+  }
+]
