@@ -1430,7 +1430,23 @@
       toast("JSON 백업 파일을 내려받았습니다.");
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    
+    async function loadGeneratedData() {
+      try {
+        const papersRes = await fetch("./data/papers.json");
+        const generatedPapers = await papersRes.json();
+
+        if (generatedPapers && generatedPapers.length) {
+          state.papers = generatedPapers;
+          state.selectedPaperId = generatedPapers[0].id;
+        }
+      } catch (e) {
+        console.error("Failed to load generated data:", e);
+      }
+    }
+
+document.addEventListener("DOMContentLoaded", async () => {
+      await loadGeneratedData();
       renderAll();
 
       $$(".nav button[data-view]").forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
