@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>AnyMo: Geometry-Aware Setup-Agnostic Modeling of Human Motion in the Wild</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; line-height: 1.75; max-width: 980px; margin: 40px auto; padding: 0 24px; color: #222; }
+    a { color: #2563eb; }
+    section { border-top: 1px solid #e5e7eb; padding-top: 24px; margin-top: 28px; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #eef2ff; margin-right: 6px; font-size: 13px; }
+    .box { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 14px; padding: 18px; }
+  </style>
+</head>
+<body>
+  <p><a href="../index.html">← Overview</a></p>
+  <h1>AnyMo: Geometry-Aware Setup-Agnostic Modeling of Human Motion in the Wild</h1>
+  <p>
+    <span class="badge">arXiv: 2605.22715v1</span>
+    <span class="badge">2026-05-21</span>
+    <span class="badge">To Read</span>
+  </p>
+
+  <section>
+    <h2>1) 개요</h2>
+    <p><strong>저자:</strong> Baiyu Chen, Zechen Li, Wilson Wongso, Lihuan Li, Xiachong Lin, Hao Xue, Benjamin Tag, Flora Salim</p>
+    <p><strong>분야:</strong> cs.CV, cs.AI, cs.CL, cs.HC</p>
+    <p><strong>링크:</strong> <a href="https://arxiv.org/abs/2605.22715v1">https://arxiv.org/abs/2605.22715v1</a></p>
+    <p><strong>Keywords:</strong> HCI, rehabilitation, wearable sensing, IMU / inertial sensing, biofeedback, assistive technology, movement assessment, posture assessment</p>
+  </section>
+
+  <section>
+    <h2>2) Abstract 요약</h2>
+    <div class="box">
+      <p>As wearable and mobile devices become increasingly embedded in daily life, they offer a practical way to continuously sense human motion in the wild. But inertial signals are highly dependent on the sensing setup, including body location, mounting position, sensor orientation, device hardware, and sampling protocol. This setup dependence makes it difficult to learn motion representations that transfer across devices and datasets, and limits the broader use of wearable IMUs beyond closed-set recognition. We introduce AnyMo, a geometry-aware framework for setup-agnostic human motion modeling. AnyMo uses physics-grounded IMU simulation over dense body-surface placements to generate diverse and plausible synthetic signals, pre-trains a graph encoder from paired synthetic placement views and masked partial observations, tokenizes multi-position IMU into full-body motion tokens, and aligns these tokens with an LLM for motion-language understanding. We evaluate AnyMo on three complementary tasks: zero-shot activity recognition across 14 unseen downstream datasets, cross-modal retrieval, and wearable IMU motion captioning, where it improves average Accuracy/F1/R@2 by 11.7\%/11.6\%/22.6\% on HAR, increases zero-shot IMU-to-text and text-to-IMU retrieval MRR by 15.9\% and 28.6\%, respectively, and improves zero-shot captioning BERT-F1 by 18.8\%. These results support AnyMo as a generalist model for wearable motion understanding in the wild. Project page: https://baiyuchen.com/project/AnyMo.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3) 내 연구와의 연결점</h2>
+    <ul>
+      <li>재활승마를 직접 다루지 않더라도, 움직임 평가·센서 기반 피드백·재활 상호작용 설계 관점에서 참고 가능성을 검토할 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4) 검토 메모</h2>
+    <p>이 페이지는 자동 생성된 1차 후보 요약입니다. 원문 확인 후 연구 방법론, 결과, 한계, 내 연구 적용 가능성을 보완하세요.</p>
+  </section>
+</body>
+</html>

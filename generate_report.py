@@ -11,24 +11,60 @@ from datetime import datetime
 today = datetime.now().strftime("%Y-%m-%d")
 
 SEARCH_KEYWORDS = [
-    "wearable sensing",
-    "movement assessment",
-    "posture assessment",
+    "HCI",
     "rehabilitation",
+    "wearable sensing",
+    "IMU / inertial sensing",
     "biofeedback",
     "assistive technology",
-    "HCI"
+    "movement assessment",
+    "posture assessment",
 ]
 
 ARXIV_QUERY = (
-    '(cat:cs.HC OR cat:cs.CY OR cat:cs.RO OR cat:eess.SP) '
+    '(cat:cs.HC OR cat:cs.CY OR cat:cs.RO OR cat:eess.SP OR cat:cs.AI) '
     'AND '
-    '(all:"wearable" OR all:"IMU" OR all:"inertial" OR all:"motion sensing") '
-    'AND '
-    '(all:"rehabilitation" OR all:"posture" OR all:"movement" OR all:"biofeedback" OR all:"assistive")'
+    '(all:"rehabilitation" OR all:"wearable sensing" OR all:"IMU" OR all:"inertial" OR all:"biofeedback" OR all:"assistive technology" OR all:"posture" OR all:"movement assessment") '
+    'ANDNOT '
+    '(all:"pedestrian dead reckoning" OR all:"localization" OR all:"radio" OR all:"networking" OR all:"signal processing" OR all:"chip" OR all:"accelerator")'
 )
 
-MAX_RESULTS = 5
+MAX_RESULTS = 3
+
+PRIORITY_TERMS = [
+    "hci",
+    "human-computer interaction",
+    "rehabilitation",
+    "wearable sensing",
+    "wearable",
+    "imu",
+    "inertial",
+    "biofeedback",
+    "assistive",
+    "posture",
+    "movement assessment",
+    "movement training",
+]
+
+EXCLUSION_TERMS = [
+    "pedestrian",
+    "pedestrian dead reckoning",
+    "dead reckoning",
+    "localization",
+    "radio",
+    "radio system",
+    "radio systems",
+    "wireless network",
+    "networking",
+    "signal processing",
+    "signal processing only",
+    "chip",
+    "accelerator",
+    "nand",
+    "cim architecture",
+]
+
+MIN_RELEVANCE_SCORE = 1
 
 def esc(value):
     return html.escape(str(value or ""), quote=True)
@@ -86,6 +122,14 @@ def parse_entries(xml_data):
             c.attrib.get("term", "")
             for c in entry.findall("atom:category", ns)
         ]
+
+        relevance_text = f"{title} {summary} {' '.join(categories)}".lower()
+        if any(term in relevance_text for term in EXCLUSION_TERMS):
+            continue
+
+        relevance_score = sum(1 for term in PRIORITY_TERMS if term in relevance_text)
+        if relevance_score < MIN_RELEVANCE_SCORE:
+            continue
 
         paper_id = raw_id.replace(".", "-").replace("/", "-")
 
