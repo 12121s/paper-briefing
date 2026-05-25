@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>논문 요약 브리핑 대시보드</title>
+  <title>오늘의 논문 브리핑</title>
   <style>
     :root {
       --bg: #f7f3ea;
@@ -712,7 +712,7 @@
         <div class="brand-mark">📚</div>
         <div>
           <h1>Paper Briefing OS</h1>
-          <p>논문 요약 · 코멘트 · 데일리 리포트</p>
+          <p>오늘의 논문 브리핑</p>
         </div>
       </div>
 
@@ -720,9 +720,7 @@
         <p class="nav-title">Views</p>
         <button class="active" data-view="dailyView"><span class="label">🗓️ 데일리 브리핑</span><span class="badge green" id="todayBadge"></span></button>
         <button data-view="listView"><span class="label">🗂️ 전체 목록</span><span class="badge" id="paperCountBadge">0</span></button>
-        <button data-view="detailView"><span class="label">📝 논문 상세</span><span class="badge blue">요약</span></button>
-        <button data-view="guideView"><span class="label">💬 코멘트 사용법</span><span class="badge yellow">Drag</span></button>
-      </div>
+</div>
 
       <p class="nav-title">Papers</p>
       <div class="paper-list-mini" id="miniPaperList"></div>
@@ -737,7 +735,7 @@
         <div class="topbar">
           <div>
             <p class="eyebrow">Daily Research Briefing</p>
-            <h1 class="page-title">오늘 읽을 논문과 남길 인사이트를 한 화면에서 관리합니다.</h1>
+            <h1 class="page-title">오늘의 논문 브리핑</h1>
             <p class="page-subtitle">매일 읽은 논문, 핵심 발견, 내 연구와의 연결점, 후속 질문을 짧게 남기고 전체 논문 DB와 연결해 관리하는 브리핑 화면입니다.</p>
           </div>
           <div class="actions">
@@ -955,11 +953,105 @@
   <script>
     const STORAGE_KEY = "paper-briefing-os-v1";
     const todayKey = new Date().toISOString().slice(0, 10);
+
     const seedState = {
-	selectedPaperId: null,
-	dailyReports: {},
-  	comments: [],
-  	papers: []
+      selectedPaperId: "cleary-2024",
+      dailyReports: {},
+      comments: [],
+      papers: [
+        {
+          id: "cleary-2024",
+          citation: "Cleary et al. (2024)",
+          year: 2024,
+          title: "A Scoping Review of Equine-Assisted Therapies on the Mental Health and Well-Being of Autistic Children and Adolescents: Exploring the Possibilities",
+          authors: "Michelle Cleary, Sancia West, Deependra Kaji Thapa, Catherine Hungerford, Loyola McLean, Colleen Johnston-Devin, Rachel Kornhaber",
+          publication: "Issues in Mental Health Nursing, 45(9), 948–960 / Taylor & Francis / 2024",
+          method: "Scoping Review",
+          status: "Use in Thesis",
+          keywords: ["Equine-assisted therapy", "autistic children and adolescents", "mental health", "well-being", "parents’ perceptions", "service providers’ perceptions", "scoping review"],
+          abstract: [
+            "이 연구는 자폐 아동·청소년을 대상으로 한 말 매개 치료가 정신건강과 웰빙에 어떤 영향을 미치는지 기존 연구를 검토한 스코핑 리뷰임",
+            "부모, 보호자, 재활승마 서비스 제공자가 말 매개 치료의 효과를 어떻게 인식하고 경험했는지에 초점을 둠",
+            "PubMed, Scopus, CINAHL에서 문헌을 검색하여 최종 16편의 논문, 15개 연구를 분석함",
+            "분석 결과, 말 매개 치료는 신체적·사회적·행동적·정서적·감각적·인지적 효과를 가질 수 있으나, 정신건강 효과와 서비스 제공자 관점 연구는 부족하다고 제시함"
+          ],
+          terms: [
+            ["Equine-assisted therapy, 말 매개 치료", "말을 활용한 치료 또는 중재 활동을 의미함. 이 논문에서는 승마, 말 돌보기, 말이 함께 있는 치료 활동 등 말을 활용한 서비스를 모두 포함하는 넓은 개념으로 사용함"],
+            ["Autistic children and adolescents, 자폐 아동·청소년", "자폐 스펙트럼에 있는 아동과 청소년을 의미함. 이 논문은 이들이 말 매개 치료를 통해 어떤 신체적·사회적·정서적 변화를 경험하는지에 초점을 둠"],
+            ["Mental health and well-being, 정신건강과 웰빙", "불안, 스트레스, 정서 안정, 행복감, 자존감 등 심리적 상태와 삶의 질에 관련된 요소를 의미함. 이 논문은 말 매개 치료가 이러한 측면에 어떤 긍정적 영향을 줄 수 있는지 살펴봄"],
+            ["Parents’, carers’, and service providers’ perceptions, 부모·보호자·서비스 제공자의 인식", "치료 효과를 직접 측정한 값이 아니라, 부모나 서비스 제공자가 관찰하고 경험한 변화를 의미함. 이 논문은 아동 본인의 직접 응답보다 주변 성인의 관찰과 경험을 중심으로 분석함"],
+            ["Scoping review, 스코핑 리뷰", "특정 주제에 대해 기존 연구가 얼마나, 어떤 방향으로 축적되어 있는지 넓게 정리하는 문헌고찰 방법임. 효과를 엄밀히 검증하기보다 연구 흐름과 연구 공백을 파악하는 데 적합함"],
+            ["Arksey and O’Malley framework", "스코핑 리뷰를 수행하기 위한 5단계 절차임. 연구 질문 설정, 관련 연구 검색, 연구 선별, 자료 정리, 결과 종합의 순서로 문헌을 체계적으로 검토함"],
+            ["PRISMA-ScR", "스코핑 리뷰 보고 기준임. 어떤 데이터베이스에서 문헌을 검색했고, 어떤 기준으로 제외했으며, 최종 몇 편을 분석했는지 투명하게 보여주기 위한 체크리스트 역할을 함"]
+          ],
+          researchQuestions: [
+            "자폐 아동·청소년을 위한 말 매개 치료에 대해 부모, 보호자, 서비스 제공자는 어떤 효과와 경험을 인식하고 있는가?",
+            "말 매개 치료는 자폐 아동·청소년의 정신건강과 웰빙에 어떤 긍정적 영향을 주는 것으로 보고되고 있는가?",
+            "기존 연구에서 말 매개 치료의 효과와 한계는 어떤 방식으로 다루어졌으며, 아직 부족한 연구 영역은 무엇인가?"
+          ],
+          design: [
+            "이 연구는 스코핑 리뷰 방식으로 수행됨. 스코핑 리뷰는 특정 주제에 대해 기존 연구가 얼마나, 어떤 방향으로 축적되어 있는지 넓게 지도처럼 정리하는 문헌고찰 방법임",
+            "연구는 Arksey and O’Malley(2005) 프레임워크를 따름. 연구 질문 설정, 관련 연구 검색, 연구 선별, 자료 정리, 결과 종합의 5단계 절차임",
+            "연구 결과 보고는 PRISMA-ScR 기준에 맞춤. 문헌고찰의 검색·선별 과정을 독자가 추적할 수 있게 만드는 체크리스트 역할을 함",
+            "PubMed, Scopus, CINAHL에서 문헌 검색 후 177편 검색, 중복 제거 및 선별을 거쳐 최종 16편 논문, 15개 연구를 포함함",
+            "NVivo를 활용해 부모와 서비스 제공자가 인식한 효과를 주제별로 분류함"
+          ],
+          findings: [
+            "말 매개 치료의 효과는 부모 관점에서 신체, 사회성, 행동, 정서, 감각, 인지 영역 전반에 걸쳐 긍정적으로 보고됨",
+            "부모들은 자세, 균형, 신체 조절, 의사소통, 자기조절, 사회적 상호작용, 자신감, 정서 안정 등의 개선을 인식함",
+            "일부 연구에서는 불안 감소, 스트레스 완화, 행복감, 자존감, 정서적 안정 등 정신건강 관련 효과도 보고됨",
+            "그러나 정신건강 효과를 직접 측정하거나, 서비스 제공자 관점에서 정신건강 효과를 다룬 연구는 매우 제한적임",
+            "말 매개 치료의 효과는 아동에게만 그치지 않고, 부모의 양육 부담 완화와 가족의 정서적 안정에도 영향을 줄 수 있음"
+          ],
+          interpretation: [
+            "말과의 신체적 접촉, 리듬감 있는 말의 움직임, 말과의 관계 형성, 치료 환경의 안정감이 자폐 아동·청소년의 참여와 정서적 반응에 긍정적으로 작용할 가능성이 있음",
+            "다만 포함된 연구들이 대부분 부모의 인식에 기반하기 때문에, 실제 참여자인 아동·청소년의 직접 경험과 객관적 치료 효과를 충분히 설명하기에는 한계가 있음"
+          ],
+          contributions: [
+            "자폐 아동·청소년 대상 말 매개 치료 연구를 부모와 서비스 제공자 관점에서 종합함",
+            "말 매개 치료가 신체·사회·정서적 측면에서 긍정적 가능성을 가진다는 기존 연구 흐름을 정리함",
+            "정신건강과 웰빙 관점에서 말 매개 치료 연구가 더 확장될 필요가 있음을 제시함"
+          ],
+          limitations: [
+            "연구가 부모와 서비스 제공자의 인식에 초점을 두어, 자폐 아동·청소년 자신의 경험은 충분히 반영하지 못함",
+            "부모 응답자 중 어머니 비중이 높아 부모 전체의 관점을 균형 있게 반영했다고 보기 어려움",
+            "인식 기반 자료는 경험을 설명하는 데 유용하지만, 객관적 치료 효과나 인과관계를 입증하기에는 제한이 있음",
+            "말 매개 치료와 아동 변화 사이의 인과관계를 명확히 밝히기 어렵고, 다른 치료나 가정·학교 환경의 영향을 분리하기 어려움",
+            "서비스 제공자 관점 연구가 매우 부족하며, 특히 서비스 제공자가 정신건강 효과를 어떻게 인식하는지에 대한 연구는 거의 없음"
+          ],
+          significance: [
+            "재활승마는 단순한 신체 활동이 아니라, 자폐 아동·청소년의 신체·사회·정서적 변화를 지원할 수 있는 치료적 서비스로 볼 수 있음",
+            "기존 연구는 말 매개 치료의 효과를 주로 부모 인식 중심으로 다루었으며, 서비스 제공자와 참여자 본인의 경험은 충분히 반영하지 못함",
+            "정신건강 효과에 대한 연구는 아직 제한적이므로, 향후에는 정서 변화, 불안 완화, 웰빙, 가족 경험 등을 함께 다루는 연구가 필요함"
+          ],
+          connection: [
+            "이 논문은 재활승마의 긍정적 효과 가능성을 설명하는 배경 근거로 활용 가능함",
+            "다만 기존 연구는 치료 효과 중심이기 때문에, 실제 서비스 운영 과정에서 참여자 정보, 세션 기록, 보호자 피드백, 제공자 간 커뮤니케이션이 어떻게 관리되는지는 충분히 다루지 못함",
+            "따라서 내 연구는 재활승마를 치료 활동뿐 아니라 기록·피드백·커뮤니케이션이 축적되어야 하는 서비스 시스템으로 분석한다는 점에서 차별화될 수 있음"
+          ]
+        },
+        {
+          id: "placeholder-service-design",
+          citation: "Service Design Key Paper",
+          year: 2025,
+          title: "Using Journey Mapping and Service Blueprinting to Design Digital Health Behavior Change Innovations",
+          authors: "Voorheis et al.",
+          publication: "Journal of Diabetes Science and Technology / 2025",
+          method: "Scoping Review",
+          status: "Reading",
+          keywords: ["journey mapping", "service blueprint", "digital health", "behavior change"],
+          abstract: ["디지털 헬스케어 행동 변화 개입을 설계할 때 여정 지도와 서비스 블루프린트를 어떻게 활용하는지 정리하는 논문으로 관리할 수 있음"],
+          terms: [["Journey Mapping", "사용자 경험의 단계별 흐름, 접점, 감정, 문제를 시각화하는 방법"], ["Service Blueprint", "사용자 접점뿐 아니라 백스테이지 운영, 데이터, 역할, 시스템 흐름까지 함께 표현하는 서비스 설계 도구"]],
+          researchQuestions: ["디지털 헬스케어 설계에서 여정 지도와 서비스 블루프린트는 어떤 방식으로 활용되는가?"],
+          design: ["추후 상세 요약 작성 필요"],
+          findings: ["추후 상세 요약 작성 필요"],
+          interpretation: ["재활승마 운영 시스템을 서비스디자인 방법론으로 구조화하는 데 참고 가능"],
+          contributions: ["서비스디자인 도구를 디지털 헬스케어 맥락에 연결하는 근거로 활용 가능"],
+          limitations: ["추후 논문 원문 기반으로 보완 필요"],
+          significance: ["내 연구의 방법론 장에서 Journey Map과 Service Blueprint를 사용하는 이유를 설명하는 근거가 될 수 있음"],
+          connection: ["재활승마 세션 전·중·후의 참여자 경험과 제공자 운영 흐름을 함께 설계하는 프레임으로 연결 가능"]
+        }
+      ]
     };
 
     let state = loadState();
