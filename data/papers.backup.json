@@ -1,0 +1,158 @@
+[
+  {
+    "id": "2605-22942v1",
+    "title": "Improved Vision-to-Chart Buoy Association with Learned World-to-Image Projection",
+    "authors": "Borja Carrillo-Perez",
+    "arxiv_id": "2605.22942v1",
+    "link": "https://arxiv.org/abs/2605.22942v1",
+    "published": "2026-05-21",
+    "summary": "This report presents a lightweight modification to the DETR-based fusion transformer baseline for the MaCVi 2026 Vision-to-Chart data association challenge. The challenge baseline decoder receives per-buoy queries encoding world-space distance and bearing, forcing the transformer to implicitly learn the complex geometric projection from world coordinates to image pixels. Instead, this work trains an additional dedicated MLP, QueryMLP, to explicitly predict the buoy's waterline contact point in the image from chart measurements and IMU orientation data. The predicted pixel coordinates are appended to the baseline decoder query vector, providing a direct spatial prior per buoy and reducing the geometric reasoning burden on the transformer decoder. On the challenge leaderboard, the presented approach achieves an Overall score of 0.7386, with F1 = 0.8055 and mIoU = 0.6718, on the held-out test set, placing second among all submissions.",
+    "keywords": [
+      "IMU",
+      "movement assessment",
+      "biofeedback",
+      "technology probe",
+      "co-design"
+    ],
+    "page": "papers/2605-22942v1.html"
+  },
+  {
+    "id": "2605-22775v1",
+    "citation": "arXiv 2605.22775v1",
+    "year": 2026,
+    "title": "MambaGaze: Bidirectional Mamba with Explicit Missing Data Modeling for Cognitive Load Assessment from Eye-Gaze Tracking Data",
+    "authors": "Amir Mousavi, Mohammad Sadegh Sirjani, Erfan Nourbakhsh, Mimi Xie, Rocky Slavin, Leslie Neely, John Davis, John Quarles",
+    "arxiv_id": "2605.22775v1",
+    "link": "https://arxiv.org/abs/2605.22775v1",
+    "published": "2026-05-21",
+    "categories": "cs.LG, cs.AI, cs.HC",
+    "method": "arXiv metadata search",
+    "status": "To Read",
+    "keywords": [
+      "wearable sensing",
+      "movement assessment",
+      "posture assessment",
+      "rehabilitation",
+      "biofeedback",
+      "assistive technology",
+      "HCI"
+    ],
+    "abstract": [
+      "Real-time cognitive load assessment from eye-tracking signals could potentially enable adaptive human-centered-AI such as safety-critical applications such as driver vigilance monitoring or automated flight deck assistance, yet two challenges persist: handling frequent data missingness from blinks and tracking failures, and efficiently modeling long-range temporal dependencies. We propose MambaGaze, a framework that addresses these challenges through 1) XMD encoding, which augments raw features with observation masks and time-deltas to explicitly model data uncertainty, and 2) bidirectional Mamba-2, which captures temporal dependencies with linear computational complexity. Experiments on CLARE and CL-Drive datasets under leave-one-subject-out evaluation show that MambaGaze achieves 76.8% and 73.1% accuracy, respectively, outperforming CNN, Transformer, ResNet, and VGG baselines by 4-12 percentage points. Edge deployment benchmarks on NVIDIA Jetson platforms demonstrate real-time inference at 43-68 FPS with power consumption below 7.5W, confirming feasibility for wearable cognitive load monitoring."
+    ],
+    "terms": [
+      [
+        "IMU / inertial sensing",
+        "움직임, 자세, 균형 상태를 측정하기 위해 사용하는 관성 센서 기반 측정 방식입니다."
+      ],
+      [
+        "Movement assessment",
+        "사람의 움직임, 자세, 균형, 수행 상태를 평가하는 연구 영역입니다."
+      ],
+      [
+        "Biofeedback",
+        "센서로 측정한 신체 또는 행동 데이터를 사용자에게 다시 보여주어 자기 조절과 학습을 돕는 피드백 방식입니다."
+      ]
+    ],
+    "researchQuestions": [
+      "이 논문이 wearable sensing, movement assessment, rehabilitation, HCI 중 어떤 축과 연결되는가?",
+      "이 논문의 방법 또는 시스템 설계가 재활승마/움직임 피드백 서비스에 어떻게 확장될 수 있는가?"
+    ],
+    "design": [
+      "현재 페이지는 arXiv metadata와 abstract 기반 자동 요약입니다.",
+      "정밀 리뷰가 필요한 논문은 원문 PDF 확인 후 연구 방법론, 데이터, 실험 설계를 별도로 보완해야 합니다."
+    ],
+    "findings": [
+      "자동 수집 단계에서는 abstract 기반 핵심 내용만 저장합니다.",
+      "상세 결과와 수치 성능은 원문 확인 후 수동 또는 LLM 요약 단계에서 보완합니다."
+    ],
+    "interpretation": [
+      "이 논문은 내 연구 관심사와 일부 키워드 또는 분야 축에서 연결될 가능성이 있습니다.",
+      "직접 관련성은 원문 확인 후 To Read, Reading, Used in Thesis 등으로 분류합니다."
+    ],
+    "contributions": [
+      "최신 연구 후보를 자동으로 수집해 데일리 브리핑 후보군으로 축적합니다."
+    ],
+    "limitations": [
+      "arXiv metadata 기반 검색이므로 relevance가 완벽하지 않을 수 있습니다.",
+      "논문에 없는 주장은 생성하지 않고, 연구 연결점은 별도 해석으로 관리해야 합니다."
+    ],
+    "significance": [
+      "IMU, movement assessment, biofeedback, rehabilitation HCI 관련 최신 연구 흐름을 추적하는 데 활용할 수 있습니다."
+    ],
+    "connection": [
+      "재활승마를 직접 다루지 않더라도, 움직임 평가·센서 기반 피드백·재활 상호작용 설계 관점에서 참고 가능성을 검토할 수 있습니다."
+    ],
+    "page": "papers/2605-22775v1.html"
+  },
+  {
+    "id": "2605-22715v1",
+    "citation": "arXiv 2605.22715v1",
+    "year": 2026,
+    "title": "AnyMo: Geometry-Aware Setup-Agnostic Modeling of Human Motion in the Wild",
+    "authors": "Baiyu Chen, Zechen Li, Wilson Wongso, Lihuan Li, Xiachong Lin, Hao Xue, Benjamin Tag, Flora Salim",
+    "arxiv_id": "2605.22715v1",
+    "link": "https://arxiv.org/abs/2605.22715v1",
+    "published": "2026-05-21",
+    "categories": "cs.CV, cs.AI, cs.CL, cs.HC",
+    "method": "arXiv metadata search",
+    "status": "To Read",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "As wearable and mobile devices become increasingly embedded in daily life, they offer a practical way to continuously sense human motion in the wild. But inertial signals are highly dependent on the sensing setup, including body location, mounting position, sensor orientation, device hardware, and sampling protocol. This setup dependence makes it difficult to learn motion representations that transfer across devices and datasets, and limits the broader use of wearable IMUs beyond closed-set recognition. We introduce AnyMo, a geometry-aware framework for setup-agnostic human motion modeling. AnyMo uses physics-grounded IMU simulation over dense body-surface placements to generate diverse and plausible synthetic signals, pre-trains a graph encoder from paired synthetic placement views and masked partial observations, tokenizes multi-position IMU into full-body motion tokens, and aligns these tokens with an LLM for motion-language understanding. We evaluate AnyMo on three complementary tasks: zero-shot activity recognition across 14 unseen downstream datasets, cross-modal retrieval, and wearable IMU motion captioning, where it improves average Accuracy/F1/R@2 by 11.7\\%/11.6\\%/22.6\\% on HAR, increases zero-shot IMU-to-text and text-to-IMU retrieval MRR by 15.9\\% and 28.6\\%, respectively, and improves zero-shot captioning BERT-F1 by 18.8\\%. These results support AnyMo as a generalist model for wearable motion understanding in the wild. Project page: https://baiyuchen.com/project/AnyMo."
+    ],
+    "terms": [
+      [
+        "IMU / inertial sensing",
+        "움직임, 자세, 균형 상태를 측정하기 위해 사용하는 관성 센서 기반 측정 방식입니다."
+      ],
+      [
+        "Movement assessment",
+        "사람의 움직임, 자세, 균형, 수행 상태를 평가하는 연구 영역입니다."
+      ],
+      [
+        "Biofeedback",
+        "센서로 측정한 신체 또는 행동 데이터를 사용자에게 다시 보여주어 자기 조절과 학습을 돕는 피드백 방식입니다."
+      ]
+    ],
+    "researchQuestions": [
+      "이 논문이 wearable sensing, movement assessment, rehabilitation, HCI 중 어떤 축과 연결되는가?",
+      "이 논문의 방법 또는 시스템 설계가 재활승마/움직임 피드백 서비스에 어떻게 확장될 수 있는가?"
+    ],
+    "design": [
+      "현재 페이지는 arXiv metadata와 abstract 기반 자동 요약입니다.",
+      "정밀 리뷰가 필요한 논문은 원문 PDF 확인 후 연구 방법론, 데이터, 실험 설계를 별도로 보완해야 합니다."
+    ],
+    "findings": [
+      "자동 수집 단계에서는 abstract 기반 핵심 내용만 저장합니다.",
+      "상세 결과와 수치 성능은 원문 확인 후 수동 또는 LLM 요약 단계에서 보완합니다."
+    ],
+    "interpretation": [
+      "이 논문은 내 연구 관심사와 일부 키워드 또는 분야 축에서 연결될 가능성이 있습니다.",
+      "직접 관련성은 원문 확인 후 To Read, Reading, Used in Thesis 등으로 분류합니다."
+    ],
+    "contributions": [
+      "최신 연구 후보를 자동으로 수집해 데일리 브리핑 후보군으로 축적합니다."
+    ],
+    "limitations": [
+      "arXiv metadata 기반 검색이므로 relevance가 완벽하지 않을 수 있습니다.",
+      "논문에 없는 주장은 생성하지 않고, 연구 연결점은 별도 해석으로 관리해야 합니다."
+    ],
+    "significance": [
+      "IMU, movement assessment, biofeedback, rehabilitation HCI 관련 최신 연구 흐름을 추적하는 데 활용할 수 있습니다."
+    ],
+    "connection": [
+      "재활승마를 직접 다루지 않더라도, 움직임 평가·센서 기반 피드백·재활 상호작용 설계 관점에서 참고 가능성을 검토할 수 있습니다."
+    ],
+    "page": "papers/2605-22715v1.html"
+  }
+]
