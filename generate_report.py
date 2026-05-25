@@ -291,9 +291,5 @@ index_html = f"""<!DOCTYPE html>
 </html>
 """
 
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(index_html)
-
 print(f"Generated reports/{today}.html")
 print(f"Generated {len(papers)} paper summary pages")
-print("Updated index.html, data/papers.json, data/reports.json")

@@ -1,57 +1,1485 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>Paper Briefing OS</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>논문 요약 브리핑 대시보드</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif; line-height: 1.75; max-width: 1080px; margin: 40px auto; padding: 0 24px; color: #222; background: #fafafa; }
-    a { color: #2563eb; }
-    header { margin-bottom: 32px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-    .card { background: white; border: 1px solid #e5e7eb; border-radius: 16px; padding: 20px; }
-    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #eef2ff; margin-right: 6px; font-size: 13px; }
+    :root {
+      --bg: #f7f3ea;
+      --paper: #fffdf8;
+      --paper-2: #fbf8ef;
+      --ink: #26221d;
+      --muted: #777066;
+      --line: #e7decd;
+      --line-dark: #d7cbb9;
+      --accent: #1f6f62;
+      --accent-soft: #e7f3ef;
+      --yellow: #fff4bf;
+      --red-soft: #fae8df;
+      --blue-soft: #e8f0fb;
+      --shadow: 0 18px 45px rgba(50, 43, 31, 0.08);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top left, #fffaf0 0, var(--bg) 38%, #efe7d9 100%);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+      line-height: 1.68;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 282px minmax(0, 1fr) 340px;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 22px;
+      border-right: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.72);
+      backdrop-filter: blur(18px);
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--accent);
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 10px 24px rgba(31, 111, 98, 0.22);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .nav-title {
+      margin: 26px 0 9px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav button,
+    .paper-list-mini button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 12px;
+      border-radius: 13px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      transition: 0.18s ease;
+    }
+
+    .nav button:hover,
+    .paper-list-mini button:hover,
+    .nav button.active {
+      background: #ede5d7;
+    }
+
+    .nav .label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 24px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #efe7d9;
+      color: #625b51;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge.green { background: var(--accent-soft); color: #15584e; }
+    .badge.blue { background: var(--blue-soft); color: #355b85; }
+    .badge.red { background: var(--red-soft); color: #914b34; }
+    .badge.yellow { background: #fff3c4; color: #8b6a0f; }
+
+    .mini-paper-title {
+      display: block;
+      max-width: 182px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .mini-paper-meta {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .main {
+      padding: 34px clamp(24px, 3vw, 54px) 64px;
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .page-title {
+      margin: 0;
+      max-width: 880px;
+      font-size: clamp(31px, 5vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+    }
+
+    .page-subtitle {
+      margin: 14px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid var(--line-dark);
+      border-radius: 13px;
+      background: var(--paper);
+      color: var(--ink);
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(50, 43, 31, 0.05);
+    }
+
+    .btn.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn.ghost {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 253, 248, 0.88);
+      box-shadow: var(--shadow);
+    }
+
+    .card.pad { padding: 22px; }
+
+    .stat {
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat .num {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .stat .name {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-desc {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .daily-editor textarea,
+    .paper-form textarea,
+    .paper-form input,
+    .paper-form select,
+    .comment-box textarea,
+    .inline-input {
+      width: 100%;
+      border: 1px solid var(--line-dark);
+      border-radius: 14px;
+      background: var(--paper);
+      padding: 12px 13px;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .daily-editor textarea:focus,
+    .paper-form textarea:focus,
+    .paper-form input:focus,
+    .paper-form select:focus,
+    .comment-box textarea:focus,
+    .inline-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(31, 111, 98, 0.12);
+    }
+
+    .daily-editor textarea { min-height: 110px; resize: vertical; }
+
+    .paper-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .paper-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 250px;
+      padding: 20px;
+      transition: 0.18s ease;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 52px rgba(50, 43, 31, 0.11);
+    }
+
+    .paper-card h3 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.35;
+      letter-spacing: -0.03em;
+    }
+
+    .paper-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .search {
+      min-width: min(100%, 360px);
+      flex: 1;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      min-width: 940px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 14px 15px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f4eadb;
+      color: #5b554c;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .paper-detail {
+      max-width: 1060px;
+    }
+
+    .paper-hero {
+      padding: 30px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fffdf8 0%, #f0e6d7 100%);
+    }
+
+    .paper-hero h2 {
+      margin: 0;
+      max-width: 920px;
+      font-size: clamp(27px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.055em;
+    }
+
+    .paper-hero .subtitle {
+      margin: 14px 0 0;
+      max-width: 860px;
+      color: #4c463e;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .brief-block {
+      margin: 18px 0;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 253, 248, 0.92);
+      box-shadow: 0 12px 34px rgba(50, 43, 31, 0.06);
+    }
+
+    .brief-block h3 {
+      margin: 0 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .brief-block h4 {
+      margin: 18px 0 8px;
+      font-size: 16px;
+    }
+
+    .brief-block ul {
+      margin: 0;
+      padding-left: 21px;
+    }
+
+    .brief-block li + li { margin-top: 6px; }
+
+    .meta-table {
+      min-width: 0;
+      font-size: 14px;
+    }
+
+    .meta-table th {
+      width: 170px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 14px;
+      color: #413b34;
+    }
+
+    .meta-table td { white-space: pre-line; }
+
+    .annotatable {
+      border-radius: 5px;
+      transition: background 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .annotatable:hover {
+      background: rgba(255, 244, 191, 0.38);
+      box-shadow: 0 0 0 3px rgba(255, 244, 191, 0.38);
+    }
+
+    mark.comment-highlight {
+      padding: 1px 3px;
+      border-radius: 5px;
+      background: var(--yellow);
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .right-panel {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 28px 20px;
+      border-left: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.82);
+      backdrop-filter: blur(18px);
+      overflow-y: auto;
+    }
+
+    .right-panel h2 {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: -0.03em;
+    }
+
+    .right-panel .hint {
+      margin: 8px 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .comment-item {
+      margin-bottom: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--paper);
+    }
+
+    .comment-item .quote {
+      margin: 0 0 8px;
+      padding-left: 10px;
+      border-left: 3px solid var(--accent);
+      color: #4d473f;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .comment-item .body {
+      margin: 0;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .comment-item .meta {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .empty {
+      padding: 18px;
+      border: 1px dashed var(--line-dark);
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(251, 248, 239, 0.75);
+      font-size: 14px;
+    }
+
+    .floating-comment {
+      position: fixed;
+      z-index: 50;
+      display: none;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(38, 34, 29, 0.25);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(38, 34, 29, 0.38);
+    }
+
+    .modal.open { display: flex; }
+
+    .modal-card {
+      width: min(760px, 100%);
+      max-height: min(860px, 92vh);
+      overflow-y: auto;
+      padding: 24px;
+      border-radius: 24px;
+      background: var(--paper);
+      box-shadow: 0 30px 80px rgba(38, 34, 29, 0.28);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .comment-box .selected-text {
+      margin: 0 0 12px;
+      padding: 12px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: var(--accent-soft);
+      color: #214d46;
+      font-size: 14px;
+    }
+
+    .paper-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      z-index: 150;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      transition: 0.18s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .divider {
+      height: 1px;
+      margin: 18px 0;
+      background: var(--line);
+    }
+
+    @media (max-width: 1180px) {
+      .app { grid-template-columns: 240px minmax(0, 1fr); }
+      .right-panel {
+        position: static;
+        grid-column: 1 / -1;
+        height: auto;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .app { display: block; }
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .main { padding: 24px 16px 40px; }
+      .topbar { flex-direction: column; }
+      .actions { justify-content: flex-start; }
+      .grid.cols-2,
+      .grid.cols-3,
+      .grid.cols-4 { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .paper-hero { padding: 22px; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Paper Briefing OS</h1>
-    <p>IMU · Movement Assessment · Biofeedback · Technology Probe · Co-design 중심의 논문 브리핑 아카이브입니다.</p>
-  </header>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">📚</div>
+        <div>
+          <h1>Paper Briefing OS</h1>
+          <p>논문 요약 · 코멘트 · 데일리 리포트</p>
+        </div>
+      </div>
 
-  <section>
-    <h2>Daily Reports</h2>
-    <div class="grid">
-      <article class="card">
-        <p><span class="badge">2026-05-25</span><span class="badge">3 papers</span></p>
-        <h3><a href="reports/2026-05-25.html">Daily Research Briefing - 2026-05-25</a></h3>
-        <p>오늘의 연구 관심사 기반 arXiv 논문 후보 리포트입니다.</p>
-      </article>
-    </div>
-  </section>
+      <div class="nav">
+        <p class="nav-title">Views</p>
+        <button class="active" data-view="dailyView"><span class="label">🗓️ 데일리 브리핑</span><span class="badge green" id="todayBadge"></span></button>
+        <button data-view="listView"><span class="label">🗂️ 전체 목록</span><span class="badge" id="paperCountBadge">0</span></button>
+        <button data-view="detailView"><span class="label">📝 논문 상세</span><span class="badge blue">요약</span></button>
+        <button data-view="guideView"><span class="label">💬 코멘트 사용법</span><span class="badge yellow">Drag</span></button>
+      </div>
 
-  <section>
-    <h2>Paper Summaries</h2>
-    <div class="grid">
-      
-      <article class="card">
-        <p><span class="badge">1순위</span><span class="badge">arXiv: 2605.00890</span></p>
-        <h3><a href="papers/2605-00890.html">Skeleton-Based Posture Classification to Promote Safer Walker-Assisted Gait in Older Adults</a></h3>
-        <p>이 논문은 재활승마를 직접 다루지는 않지만, ‘안전한 자세’, ‘위험 자세’, ‘보조가 필요한 상태’를 분류한다는 점에서 내 연구와 연결됩니다.</p>
-      </article>
-      
-      <article class="card">
-        <p><span class="badge">2순위</span><span class="badge">arXiv: 2605.00913</span></p>
-        <h3><a href="papers/2605-00913.html">Leveraging Imperfect Medical Data: A Manifold-Consistent Spatio-Temporal Network for Sensor-based Human Activity Recognition</a></h3>
-        <p>이 논문은 재활승마나 자세 교정을 직접 다루지는 않지만, wearable sensing 기반 movement assessment에서 발생하는 센서 노이즈와 결측 문제를 다룬다는 점에서 중요합니다.</p>
-      </article>
-      
-      <article class="card">
-        <p><span class="badge">3순위</span><span class="badge">arXiv: 2604.26214</span></p>
-        <h3><a href="papers/2604-26214.html">Exploring the Feasibility and Acceptability of AI-Mediated Serious Illness Conversations in the Emergency Department</a></h3>
-        <p>이 논문은 움직임 평가나 재활승마를 직접 다루지는 않지만, healthcare HCI와 AI-mediated feedback의 안전한 설계라는 관점에서 참고할 수 있습니다.</p>
-      </article>
-      
+      <p class="nav-title">Papers</p>
+      <div class="paper-list-mini" id="miniPaperList"></div>
+
+      <div class="divider"></div>
+      <button class="btn primary" style="width:100%" id="openAddPaper">+ 논문 추가</button>
+      <p class="small-note">브라우저 localStorage에 저장됩니다. 실제 운영 시 Supabase/Firebase로 교체하면 다중 기기 동기화가 가능합니다.</p>
+    </aside>
+
+    <main class="main">
+      <section id="dailyView" class="view active">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Daily Research Briefing</p>
+            <h1 class="page-title">오늘 읽을 논문과 남길 인사이트를 한 화면에서 관리합니다.</h1>
+            <p class="page-subtitle">매일 읽은 논문, 핵심 발견, 내 연구와의 연결점, 후속 질문을 짧게 남기고 전체 논문 DB와 연결해 관리하는 브리핑 화면입니다.</p>
+          </div>
+          <div class="actions">
+            <button class="btn" id="exportBtn">⬇ JSON 백업</button>
+            <button class="btn primary" id="saveDailyBtn">오늘 리포트 저장</button>
+          </div>
+        </div>
+
+        <div class="grid cols-4" id="statsGrid"></div>
+
+        <div class="section grid cols-2">
+          <div class="card pad daily-editor">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">오늘의 데일리 리포트</h2>
+                <p class="section-desc">짧게라도 매일 남기면 논문 읽기 흐름이 축적됩니다.</p>
+              </div>
+            </div>
+            <label class="field">
+              <span class="small-note">오늘 읽은 논문 / 핵심 문장 / 내 연구 연결점 / 다음 액션</span>
+              <textarea id="dailyText" placeholder="예: Cleary et al. (2024)는 재활승마 효과를 부모 인식 중심으로 정리하지만, 서비스 운영 기록·피드백·커뮤니케이션 구조는 충분히 다루지 않는다. 내 연구는 이 공백을 서비스 시스템 설계 관점에서 다룰 수 있다."></textarea>
+            </label>
+          </div>
+
+          <div class="card pad">
+            <h2 class="section-title">오늘 확인할 읽기 큐</h2>
+            <p class="section-desc">상태가 Reading 또는 To Read인 논문을 우선 노출합니다.</p>
+            <div id="todayQueue" style="margin-top:16px"></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title">최근 코멘트</h2>
+              <p class="section-desc">본문을 드래그해 남긴 코멘트가 자동으로 모입니다.</p>
+            </div>
+            <button class="btn ghost" data-view-jump="detailView">본문에서 코멘트 달기 →</button>
+          </div>
+          <div class="grid cols-3" id="recentComments"></div>
+        </div>
+      </section>
+
+      <section id="listView" class="view">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Paper Database</p>
+            <h1 class="page-title">전체 논문 목록보기</h1>
+            <p class="page-subtitle">연도, 방법론, 키워드, 상태, 내 연구 연결점 기준으로 논문을 빠르게 찾고 상세 브리핑으로 이동합니다.</p>
+          </div>
+          <div class="actions">
+            <button class="btn primary" id="openAddPaper2">+ 논문 추가</button>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <input id="searchInput" class="inline-input search" type="search" placeholder="제목, 저자, 키워드, 연구 연결점 검색" />
+          <select id="statusFilter" class="inline-input" style="max-width:210px">
+            <option value="all">전체 상태</option>
+            <option value="To Read">To Read</option>
+            <option value="Reading">Reading</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Use in Thesis">Use in Thesis</option>
+          </select>
+        </div>
+
+        <div class="paper-grid" id="paperCardGrid"></div>
+
+        <div class="section">
+          <h2 class="section-title">Database Table</h2>
+          <p class="section-desc">표 형태로 한 번 더 확인할 수 있습니다.</p>
+          <div class="table-wrap" style="margin-top:14px">
+            <table>
+              <thead>
+                <tr>
+                  <th>논문</th>
+                  <th>연도</th>
+                  <th>방법론</th>
+                  <th>키워드</th>
+                  <th>상태</th>
+                  <th>내 연구 연결점</th>
+                </tr>
+              </thead>
+              <tbody id="paperTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="detailView" class="view">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Paper Briefing Detail</p>
+            <h1 class="page-title">논문 요약 브리핑</h1>
+            <p class="page-subtitle">아래 본문·표·문장 일부를 드래그하면 코멘트 버튼이 나타납니다. 코멘트는 오른쪽 패널과 데일리 브리핑에 누적됩니다.</p>
+          </div>
+          <div class="actions">
+            <select id="paperSelect" class="inline-input" style="min-width:260px"></select>
+            <button class="btn" id="markReviewedBtn">Reviewed 처리</button>
+          </div>
+        </div>
+        <article id="paperDetail" class="paper-detail"></article>
+      </section>
+
+      <section id="guideView" class="view">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">Annotation Guide</p>
+            <h1 class="page-title">문장 단위 코멘트 기능</h1>
+            <p class="page-subtitle">논문 브리핑 자료를 계속 고도화하기 위한 피드백 방식입니다. 문장 일부를 드래그하고 코멘트를 남기면, 나중에 논문 수정·발표 장표 제작·연구 질문 보완에 활용할 수 있습니다.</p>
+          </div>
+        </div>
+
+        <div class="grid cols-3">
+          <div class="card pad">
+            <h2 class="section-title">1. 드래그</h2>
+            <p class="annotatable">논문 상세 화면에서 본문, 표 내용, 연구 의의 문장을 원하는 만큼 드래그합니다.</p>
+          </div>
+          <div class="card pad">
+            <h2 class="section-title">2. 코멘트</h2>
+            <p class="annotatable">선택 영역 근처에 나타나는 “코멘트 추가” 버튼을 누르고 수정 의견, 질문, 내 연구 연결점을 작성합니다.</p>
+          </div>
+          <div class="card pad">
+            <h2 class="section-title">3. 축적</h2>
+            <p class="annotatable">작성한 코멘트는 오른쪽 패널과 데일리 리포트에 모이며, JSON으로 백업할 수 있습니다.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="right-panel">
+      <h2>문장 코멘트</h2>
+      <p class="hint">논문 상세 본문에서 텍스트를 드래그해 코멘트를 남기세요.</p>
+      <div id="commentList"></div>
+    </aside>
+  </div>
+
+  <button class="floating-comment" id="floatingComment">💬 코멘트 추가</button>
+
+  <div class="modal" id="commentModal">
+    <div class="modal-card comment-box">
+      <div class="modal-head">
+        <div>
+          <h3>코멘트 작성</h3>
+          <p class="small-note">선택한 문장에 대한 질문, 수정 의견, 내 연구 연결점을 남깁니다.</p>
+        </div>
+        <button class="btn ghost" data-close-modal="commentModal">닫기</button>
+      </div>
+      <p class="selected-text" id="selectedTextPreview"></p>
+      <textarea id="commentInput" rows="5" placeholder="예: 이 부분은 연구 배경 근거로 쓸 수 있음. 다만 서비스 운영 공백과 직접 연결하려면 제공자 관점 연구 부족을 더 강조해야 함."></textarea>
+      <div class="actions" style="margin-top:14px">
+        <button class="btn ghost" data-close-modal="commentModal">취소</button>
+        <button class="btn primary" id="saveCommentBtn">저장</button>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <div class="modal" id="paperModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <h3>논문 추가</h3>
+          <p class="small-note">우선 핵심 메타데이터만 넣고, 상세 요약은 나중에 보완할 수 있습니다.</p>
+        </div>
+        <button class="btn ghost" data-close-modal="paperModal">닫기</button>
+      </div>
+      <form class="paper-form" id="paperForm">
+        <div class="form-row">
+          <div class="field">
+            <label for="newCitation">인용명</label>
+            <input id="newCitation" required placeholder="예: Min et al. (2019)" />
+          </div>
+          <div class="field">
+            <label for="newYear">연도</label>
+            <input id="newYear" type="number" min="1900" max="2100" placeholder="2024" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="newTitle">논문 제목</label>
+          <input id="newTitle" required placeholder="논문 제목" />
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="newMethod">방법론</label>
+            <input id="newMethod" placeholder="예: Scoping Review" />
+          </div>
+          <div class="field">
+            <label for="newStatus">상태</label>
+            <select id="newStatus">
+              <option>To Read</option>
+              <option>Reading</option>
+              <option>Reviewed</option>
+              <option>Use in Thesis</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="newKeywords">키워드</label>
+          <input id="newKeywords" placeholder="쉼표로 구분: equine-assisted therapy, service design" />
+        </div>
+        <div class="field">
+          <label for="newConnection">내 연구와의 연결점</label>
+          <textarea id="newConnection" rows="4" placeholder="이 논문을 내 재활승마 서비스디자인 연구에서 어떻게 쓸 수 있는지"></textarea>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn ghost" data-close-modal="paperModal">취소</button>
+          <button class="btn primary" type="submit">추가하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">저장되었습니다.</div>
+
+  <script>
+    const STORAGE_KEY = "paper-briefing-os-v1";
+    const todayKey = new Date().toISOString().slice(0, 10);
+
+    const seedState = {
+      selectedPaperId: "cleary-2024",
+      dailyReports: {},
+      comments: [],
+      papers: [
+        {
+          id: "cleary-2024",
+          citation: "Cleary et al. (2024)",
+          year: 2024,
+          title: "A Scoping Review of Equine-Assisted Therapies on the Mental Health and Well-Being of Autistic Children and Adolescents: Exploring the Possibilities",
+          authors: "Michelle Cleary, Sancia West, Deependra Kaji Thapa, Catherine Hungerford, Loyola McLean, Colleen Johnston-Devin, Rachel Kornhaber",
+          publication: "Issues in Mental Health Nursing, 45(9), 948–960 / Taylor & Francis / 2024",
+          method: "Scoping Review",
+          status: "Use in Thesis",
+          keywords: ["Equine-assisted therapy", "autistic children and adolescents", "mental health", "well-being", "parents’ perceptions", "service providers’ perceptions", "scoping review"],
+          abstract: [
+            "이 연구는 자폐 아동·청소년을 대상으로 한 말 매개 치료가 정신건강과 웰빙에 어떤 영향을 미치는지 기존 연구를 검토한 스코핑 리뷰임",
+            "부모, 보호자, 재활승마 서비스 제공자가 말 매개 치료의 효과를 어떻게 인식하고 경험했는지에 초점을 둠",
+            "PubMed, Scopus, CINAHL에서 문헌을 검색하여 최종 16편의 논문, 15개 연구를 분석함",
+            "분석 결과, 말 매개 치료는 신체적·사회적·행동적·정서적·감각적·인지적 효과를 가질 수 있으나, 정신건강 효과와 서비스 제공자 관점 연구는 부족하다고 제시함"
+          ],
+          terms: [
+            ["Equine-assisted therapy, 말 매개 치료", "말을 활용한 치료 또는 중재 활동을 의미함. 이 논문에서는 승마, 말 돌보기, 말이 함께 있는 치료 활동 등 말을 활용한 서비스를 모두 포함하는 넓은 개념으로 사용함"],
+            ["Autistic children and adolescents, 자폐 아동·청소년", "자폐 스펙트럼에 있는 아동과 청소년을 의미함. 이 논문은 이들이 말 매개 치료를 통해 어떤 신체적·사회적·정서적 변화를 경험하는지에 초점을 둠"],
+            ["Mental health and well-being, 정신건강과 웰빙", "불안, 스트레스, 정서 안정, 행복감, 자존감 등 심리적 상태와 삶의 질에 관련된 요소를 의미함. 이 논문은 말 매개 치료가 이러한 측면에 어떤 긍정적 영향을 줄 수 있는지 살펴봄"],
+            ["Parents’, carers’, and service providers’ perceptions, 부모·보호자·서비스 제공자의 인식", "치료 효과를 직접 측정한 값이 아니라, 부모나 서비스 제공자가 관찰하고 경험한 변화를 의미함. 이 논문은 아동 본인의 직접 응답보다 주변 성인의 관찰과 경험을 중심으로 분석함"],
+            ["Scoping review, 스코핑 리뷰", "특정 주제에 대해 기존 연구가 얼마나, 어떤 방향으로 축적되어 있는지 넓게 정리하는 문헌고찰 방법임. 효과를 엄밀히 검증하기보다 연구 흐름과 연구 공백을 파악하는 데 적합함"],
+            ["Arksey and O’Malley framework", "스코핑 리뷰를 수행하기 위한 5단계 절차임. 연구 질문 설정, 관련 연구 검색, 연구 선별, 자료 정리, 결과 종합의 순서로 문헌을 체계적으로 검토함"],
+            ["PRISMA-ScR", "스코핑 리뷰 보고 기준임. 어떤 데이터베이스에서 문헌을 검색했고, 어떤 기준으로 제외했으며, 최종 몇 편을 분석했는지 투명하게 보여주기 위한 체크리스트 역할을 함"]
+          ],
+          researchQuestions: [
+            "자폐 아동·청소년을 위한 말 매개 치료에 대해 부모, 보호자, 서비스 제공자는 어떤 효과와 경험을 인식하고 있는가?",
+            "말 매개 치료는 자폐 아동·청소년의 정신건강과 웰빙에 어떤 긍정적 영향을 주는 것으로 보고되고 있는가?",
+            "기존 연구에서 말 매개 치료의 효과와 한계는 어떤 방식으로 다루어졌으며, 아직 부족한 연구 영역은 무엇인가?"
+          ],
+          design: [
+            "이 연구는 스코핑 리뷰 방식으로 수행됨. 스코핑 리뷰는 특정 주제에 대해 기존 연구가 얼마나, 어떤 방향으로 축적되어 있는지 넓게 지도처럼 정리하는 문헌고찰 방법임",
+            "연구는 Arksey and O’Malley(2005) 프레임워크를 따름. 연구 질문 설정, 관련 연구 검색, 연구 선별, 자료 정리, 결과 종합의 5단계 절차임",
+            "연구 결과 보고는 PRISMA-ScR 기준에 맞춤. 문헌고찰의 검색·선별 과정을 독자가 추적할 수 있게 만드는 체크리스트 역할을 함",
+            "PubMed, Scopus, CINAHL에서 문헌 검색 후 177편 검색, 중복 제거 및 선별을 거쳐 최종 16편 논문, 15개 연구를 포함함",
+            "NVivo를 활용해 부모와 서비스 제공자가 인식한 효과를 주제별로 분류함"
+          ],
+          findings: [
+            "말 매개 치료의 효과는 부모 관점에서 신체, 사회성, 행동, 정서, 감각, 인지 영역 전반에 걸쳐 긍정적으로 보고됨",
+            "부모들은 자세, 균형, 신체 조절, 의사소통, 자기조절, 사회적 상호작용, 자신감, 정서 안정 등의 개선을 인식함",
+            "일부 연구에서는 불안 감소, 스트레스 완화, 행복감, 자존감, 정서적 안정 등 정신건강 관련 효과도 보고됨",
+            "그러나 정신건강 효과를 직접 측정하거나, 서비스 제공자 관점에서 정신건강 효과를 다룬 연구는 매우 제한적임",
+            "말 매개 치료의 효과는 아동에게만 그치지 않고, 부모의 양육 부담 완화와 가족의 정서적 안정에도 영향을 줄 수 있음"
+          ],
+          interpretation: [
+            "말과의 신체적 접촉, 리듬감 있는 말의 움직임, 말과의 관계 형성, 치료 환경의 안정감이 자폐 아동·청소년의 참여와 정서적 반응에 긍정적으로 작용할 가능성이 있음",
+            "다만 포함된 연구들이 대부분 부모의 인식에 기반하기 때문에, 실제 참여자인 아동·청소년의 직접 경험과 객관적 치료 효과를 충분히 설명하기에는 한계가 있음"
+          ],
+          contributions: [
+            "자폐 아동·청소년 대상 말 매개 치료 연구를 부모와 서비스 제공자 관점에서 종합함",
+            "말 매개 치료가 신체·사회·정서적 측면에서 긍정적 가능성을 가진다는 기존 연구 흐름을 정리함",
+            "정신건강과 웰빙 관점에서 말 매개 치료 연구가 더 확장될 필요가 있음을 제시함"
+          ],
+          limitations: [
+            "연구가 부모와 서비스 제공자의 인식에 초점을 두어, 자폐 아동·청소년 자신의 경험은 충분히 반영하지 못함",
+            "부모 응답자 중 어머니 비중이 높아 부모 전체의 관점을 균형 있게 반영했다고 보기 어려움",
+            "인식 기반 자료는 경험을 설명하는 데 유용하지만, 객관적 치료 효과나 인과관계를 입증하기에는 제한이 있음",
+            "말 매개 치료와 아동 변화 사이의 인과관계를 명확히 밝히기 어렵고, 다른 치료나 가정·학교 환경의 영향을 분리하기 어려움",
+            "서비스 제공자 관점 연구가 매우 부족하며, 특히 서비스 제공자가 정신건강 효과를 어떻게 인식하는지에 대한 연구는 거의 없음"
+          ],
+          significance: [
+            "재활승마는 단순한 신체 활동이 아니라, 자폐 아동·청소년의 신체·사회·정서적 변화를 지원할 수 있는 치료적 서비스로 볼 수 있음",
+            "기존 연구는 말 매개 치료의 효과를 주로 부모 인식 중심으로 다루었으며, 서비스 제공자와 참여자 본인의 경험은 충분히 반영하지 못함",
+            "정신건강 효과에 대한 연구는 아직 제한적이므로, 향후에는 정서 변화, 불안 완화, 웰빙, 가족 경험 등을 함께 다루는 연구가 필요함"
+          ],
+          connection: [
+            "이 논문은 재활승마의 긍정적 효과 가능성을 설명하는 배경 근거로 활용 가능함",
+            "다만 기존 연구는 치료 효과 중심이기 때문에, 실제 서비스 운영 과정에서 참여자 정보, 세션 기록, 보호자 피드백, 제공자 간 커뮤니케이션이 어떻게 관리되는지는 충분히 다루지 못함",
+            "따라서 내 연구는 재활승마를 치료 활동뿐 아니라 기록·피드백·커뮤니케이션이 축적되어야 하는 서비스 시스템으로 분석한다는 점에서 차별화될 수 있음"
+          ]
+        },
+        {
+          id: "placeholder-service-design",
+          citation: "Service Design Key Paper",
+          year: 2025,
+          title: "Using Journey Mapping and Service Blueprinting to Design Digital Health Behavior Change Innovations",
+          authors: "Voorheis et al.",
+          publication: "Journal of Diabetes Science and Technology / 2025",
+          method: "Scoping Review",
+          status: "Reading",
+          keywords: ["journey mapping", "service blueprint", "digital health", "behavior change"],
+          abstract: ["디지털 헬스케어 행동 변화 개입을 설계할 때 여정 지도와 서비스 블루프린트를 어떻게 활용하는지 정리하는 논문으로 관리할 수 있음"],
+          terms: [["Journey Mapping", "사용자 경험의 단계별 흐름, 접점, 감정, 문제를 시각화하는 방법"], ["Service Blueprint", "사용자 접점뿐 아니라 백스테이지 운영, 데이터, 역할, 시스템 흐름까지 함께 표현하는 서비스 설계 도구"]],
+          researchQuestions: ["디지털 헬스케어 설계에서 여정 지도와 서비스 블루프린트는 어떤 방식으로 활용되는가?"],
+          design: ["추후 상세 요약 작성 필요"],
+          findings: ["추후 상세 요약 작성 필요"],
+          interpretation: ["재활승마 운영 시스템을 서비스디자인 방법론으로 구조화하는 데 참고 가능"],
+          contributions: ["서비스디자인 도구를 디지털 헬스케어 맥락에 연결하는 근거로 활용 가능"],
+          limitations: ["추후 논문 원문 기반으로 보완 필요"],
+          significance: ["내 연구의 방법론 장에서 Journey Map과 Service Blueprint를 사용하는 이유를 설명하는 근거가 될 수 있음"],
+          connection: ["재활승마 세션 전·중·후의 참여자 경험과 제공자 운영 흐름을 함께 설계하는 프레임으로 연결 가능"]
+        }
+      ]
+    };
+
+    let state = loadState();
+    let pendingSelection = null;
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return structuredClone(seedState);
+        const parsed = JSON.parse(saved);
+        return { ...structuredClone(seedState), ...parsed };
+      } catch (e) {
+        return structuredClone(seedState);
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function $(selector) { return document.querySelector(selector); }
+    function $$(selector) { return Array.from(document.querySelectorAll(selector)); }
+
+    function escapeHTML(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function toast(message = "저장되었습니다.") {
+      const el = $("#toast");
+      el.textContent = message;
+      el.classList.add("show");
+      window.setTimeout(() => el.classList.remove("show"), 1800);
+    }
+
+    function currentPaper() {
+      return state.papers.find(p => p.id === state.selectedPaperId) || state.papers[0];
+    }
+
+    function setView(viewId) {
+      $$(".view").forEach(v => v.classList.toggle("active", v.id === viewId));
+      $$(".nav button[data-view]").forEach(b => b.classList.toggle("active", b.dataset.view === viewId));
+      if (viewId === "detailView") renderDetail();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function renderAll() {
+      $("#todayBadge").textContent = todayKey.slice(5).replace("-", ".");
+      $("#paperCountBadge").textContent = state.papers.length;
+      renderMiniPaperList();
+      renderStats();
+      renderDaily();
+      renderList();
+      renderPaperSelect();
+      renderDetail();
+      renderComments();
+      saveState();
+    }
+
+    function renderStats() {
+      const reviewed = state.papers.filter(p => ["Reviewed", "Use in Thesis"].includes(p.status)).length;
+      const thesis = state.papers.filter(p => p.status === "Use in Thesis").length;
+      const comments = state.comments.length;
+      const reading = state.papers.filter(p => ["Reading", "To Read"].includes(p.status)).length;
+      const stats = [
+        [state.papers.length, "총 논문 수", "📚"],
+        [reviewed, "요약 완료", "✅"],
+        [thesis, "논문에 바로 쓸 자료", "🧩"],
+        [comments, "문장 코멘트", "💬"],
+        [reading, "읽기 큐", "🕓"]
+      ];
+      $("#statsGrid").innerHTML = stats.slice(0, 4).map(([num, name, icon]) => `
+        <div class="card pad stat">
+          <span class="badge green">${icon}</span>
+          <div><p class="num">${num}</p><p class="name">${name}</p></div>
+        </div>
+      `).join("");
+    }
+
+    function renderDaily() {
+      $("#dailyText").value = state.dailyReports[todayKey] || "";
+      const queue = state.papers.filter(p => ["Reading", "To Read"].includes(p.status));
+      $("#todayQueue").innerHTML = queue.length ? queue.map(p => `
+        <div class="comment-item">
+          <p class="body">${escapeHTML(p.citation)}</p>
+          <p class="quote">${escapeHTML(p.title)}</p>
+          <div class="tag-row">
+            <span class="badge blue">${escapeHTML(p.method || "Method")}</span>
+            <span class="badge yellow">${escapeHTML(p.status)}</span>
+          </div>
+        </div>
+      `).join("") : `<div class="empty">오늘 읽기 큐가 비어 있습니다.</div>`;
+
+      const recent = [...state.comments].reverse().slice(0, 6);
+      $("#recentComments").innerHTML = recent.length ? recent.map(c => commentCardHTML(c)).join("") : `<div class="empty">아직 코멘트가 없습니다. 논문 상세 화면에서 문장을 드래그해 코멘트를 남겨보세요.</div>`;
+    }
+
+    function renderMiniPaperList() {
+      $("#miniPaperList").innerHTML = state.papers.map(p => `
+        <button data-paper-mini="${p.id}">
+          <span><span class="mini-paper-title">${escapeHTML(p.citation)}</span><span class="mini-paper-meta">${escapeHTML(p.method || "Method")} · ${escapeHTML(p.status)}</span></span>
+          <span>›</span>
+        </button>
+      `).join("");
+      $$('[data-paper-mini]').forEach(btn => btn.addEventListener("click", () => {
+        state.selectedPaperId = btn.dataset.paperMini;
+        renderAll();
+        setView("detailView");
+      }));
+    }
+
+    function filteredPapers() {
+      const q = $("#searchInput")?.value?.trim().toLowerCase() || "";
+      const status = $("#statusFilter")?.value || "all";
+      return state.papers.filter(p => {
+        const haystack = [p.citation, p.title, p.authors, p.method, p.status, ...(p.keywords || []), ...(p.connection || [])].join(" ").toLowerCase();
+        const statusOk = status === "all" || p.status === status;
+        return statusOk && (!q || haystack.includes(q));
+      });
+    }
+
+    function renderList() {
+      const papers = filteredPapers();
+      $("#paperCardGrid").innerHTML = papers.map(p => `
+        <button class="card paper-card" data-open-paper="${p.id}">
+          <div class="tag-row"><span class="badge green">${escapeHTML(p.status)}</span><span class="badge">${escapeHTML(p.year || "-")}</span></div>
+          <h3>${escapeHTML(p.citation)}</h3>
+          <p>${escapeHTML(p.title)}</p>
+          <div class="tag-row">${(p.keywords || []).slice(0, 4).map(k => `<span class="badge blue">${escapeHTML(k)}</span>`).join("")}</div>
+        </button>
+      `).join("");
+      $("#paperTableBody").innerHTML = papers.map(p => `
+        <tr>
+          <td><strong>${escapeHTML(p.citation)}</strong><br><span class="small-note">${escapeHTML(p.title)}</span></td>
+          <td>${escapeHTML(p.year || "-")}</td>
+          <td>${escapeHTML(p.method || "-")}</td>
+          <td>${(p.keywords || []).map(k => `<span class="badge blue">${escapeHTML(k)}</span>`).join(" ")}</td>
+          <td><span class="badge green">${escapeHTML(p.status)}</span></td>
+          <td>${escapeHTML((p.connection || [""])[0])}</td>
+        </tr>
+      `).join("");
+      $$('[data-open-paper]').forEach(btn => btn.addEventListener("click", () => {
+        state.selectedPaperId = btn.dataset.openPaper;
+        renderAll();
+        setView("detailView");
+      }));
+    }
+
+    function renderPaperSelect() {
+      $("#paperSelect").innerHTML = state.papers.map(p => `<option value="${p.id}">${escapeHTML(p.citation)} · ${escapeHTML(p.status)}</option>`).join("");
+      $("#paperSelect").value = state.selectedPaperId;
+    }
+
+    function listHTML(items) {
+      return `<ul>${(items || []).map(item => `<li class="annotatable">${escapeHTML(item)}</li>`).join("")}</ul>`;
+    }
+
+    function termTableHTML(terms) {
+      return `
+        <div class="table-wrap">
+          <table class="meta-table">
+            <tbody>
+              ${(terms || []).map(([term, desc]) => `
+                <tr><th class="annotatable">${escapeHTML(term)}</th><td class="annotatable">${escapeHTML(desc)}</td></tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderDetail() {
+      const p = currentPaper();
+      if (!p) return;
+      $("#paperDetail").innerHTML = `
+        <div class="card paper-hero">
+          <div class="tag-row" style="margin-bottom:14px">
+            <span class="badge green">${escapeHTML(p.status)}</span>
+            <span class="badge blue">${escapeHTML(p.method || "Method")}</span>
+            <span class="badge">${escapeHTML(p.year || "-")}</span>
+          </div>
+          <h2 class="annotatable">${escapeHTML(p.citation)}</h2>
+          <p class="subtitle annotatable">${escapeHTML(p.title)}</p>
+        </div>
+
+        <section class="brief-block">
+          <h3>1) 개요</h3>
+          <div class="table-wrap">
+            <table class="meta-table">
+              <tbody>
+                <tr><th>제목</th><td class="annotatable">${escapeHTML(p.citation)}. ${escapeHTML(p.title)}</td></tr>
+                <tr><th>저자</th><td class="annotatable">${escapeHTML(p.authors || "-")}</td></tr>
+                <tr><th>출판사&출판년도</th><td class="annotatable">${escapeHTML(p.publication || "-")}</td></tr>
+                <tr><th>abstract</th><td>${listHTML(p.abstract)}</td></tr>
+                <tr><th>논문 사용 용어</th><td>${termTableHTML(p.terms)}</td></tr>
+                <tr><th>keywords</th><td class="annotatable">${escapeHTML((p.keywords || []).join(", "))}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="brief-block">
+          <h3>2) 연구의 구성</h3>
+          <div class="table-wrap">
+            <table class="meta-table">
+              <tbody>
+                <tr><th>research question 또는 hypothesis</th><td>${listHTML(p.researchQuestions)}</td></tr>
+                <tr><th>연구 방법론 및 설계</th><td>${listHTML(p.design)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="brief-block">
+          <h3>3) 연구 결과</h3>
+          <div class="table-wrap">
+            <table class="meta-table">
+              <tbody>
+                <tr><th>조사결과</th><td>${listHTML(p.findings)}</td></tr>
+                <tr><th>결과 해석</th><td>${listHTML(p.interpretation)}</td></tr>
+                <tr><th>논문의 기여성</th><td>${listHTML(p.contributions)}</td></tr>
+                <tr><th>논문의 한계성</th><td>${listHTML(p.limitations)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="brief-block">
+          <h3>4) 연구 의의</h3>
+          ${listHTML(p.significance)}
+        </section>
+
+        <section class="brief-block">
+          <h3>5) 내 연구와의 연결점</h3>
+          ${listHTML(p.connection)}
+        </section>
+      `;
+    }
+
+    function commentCardHTML(c) {
+      const paper = state.papers.find(p => p.id === c.paperId);
+      return `
+        <div class="comment-item" data-comment-id="${c.id}">
+          <p class="quote">${escapeHTML(c.quote)}</p>
+          <p class="body">${escapeHTML(c.body)}</p>
+          <p class="meta">${escapeHTML(paper?.citation || "Guide")} · ${escapeHTML(c.createdAt.slice(0, 10))}</p>
+        </div>
+      `;
+    }
+
+    function renderComments() {
+      const comments = [...state.comments].reverse();
+      $("#commentList").innerHTML = comments.length ? comments.map(c => commentCardHTML(c)).join("") : `<div class="empty">드래그한 문장에 코멘트를 남기면 여기에 표시됩니다.</div>`;
+    }
+
+    function getSelectionInsideAnnotatable() {
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed || selection.rangeCount === 0) return null;
+      const range = selection.getRangeAt(0);
+      const text = selection.toString().trim();
+      if (!text) return null;
+      const container = range.commonAncestorContainer.nodeType === 1 ? range.commonAncestorContainer : range.commonAncestorContainer.parentElement;
+      const annotatable = container?.closest?.(".annotatable, .brief-block, .card");
+      if (!annotatable) return null;
+      return { selection, range, text };
+    }
+
+    function showFloatingComment(sel) {
+      const rect = sel.range.getBoundingClientRect();
+      const btn = $("#floatingComment");
+      btn.style.left = `${Math.min(window.innerWidth - 170, Math.max(16, rect.left + rect.width / 2 - 64))}px`;
+      btn.style.top = `${Math.max(16, rect.top - 48)}px`;
+      btn.style.display = "inline-flex";
+      pendingSelection = sel;
+    }
+
+    function hideFloatingComment() {
+      $("#floatingComment").style.display = "none";
+    }
+
+    function openModal(id) {
+      $("#" + id).classList.add("open");
+    }
+
+    function closeModal(id) {
+      $("#" + id).classList.remove("open");
+    }
+
+    function saveComment() {
+      const body = $("#commentInput").value.trim();
+      if (!pendingSelection || !body) {
+        toast("코멘트를 입력해 주세요.");
+        return;
+      }
+      const quote = pendingSelection.text;
+      const id = `c-${Date.now()}`;
+      state.comments.push({ id, paperId: currentPaper()?.id || "guide", quote, body, createdAt: new Date().toISOString() });
+
+      try {
+        const mark = document.createElement("mark");
+        mark.className = "comment-highlight";
+        mark.dataset.commentId = id;
+        mark.textContent = quote;
+        pendingSelection.range.deleteContents();
+        pendingSelection.range.insertNode(mark);
+      } catch (e) {
+        // 복잡한 표 선택 등으로 하이라이트 삽입이 어려운 경우에도 코멘트 저장은 유지합니다.
+      }
+
+      saveState();
+      renderComments();
+      renderDaily();
+      closeModal("commentModal");
+      $("#commentInput").value = "";
+      window.getSelection()?.removeAllRanges();
+      hideFloatingComment();
+      toast("코멘트가 저장되었습니다.");
+    }
+
+    function slugify(value) {
+      return String(value).toLowerCase().replace(/[^a-z0-9가-힣]+/g, "-").replace(/(^-|-$)/g, "").slice(0, 60) || `paper-${Date.now()}`;
+    }
+
+    function addPaper(event) {
+      event.preventDefault();
+      const citation = $("#newCitation").value.trim();
+      const title = $("#newTitle").value.trim();
+      if (!citation || !title) return;
+      const id = slugify(`${citation}-${Date.now()}`);
+      const keywords = $("#newKeywords").value.split(",").map(v => v.trim()).filter(Boolean);
+      const connection = $("#newConnection").value.trim();
+      state.papers.push({
+        id,
+        citation,
+        year: Number($("#newYear").value) || "",
+        title,
+        authors: "추후 입력",
+        publication: "추후 입력",
+        method: $("#newMethod").value.trim() || "추후 입력",
+        status: $("#newStatus").value,
+        keywords,
+        abstract: ["추후 abstract 요약 작성"],
+        terms: [["핵심 용어", "추후 용어 정의 작성"]],
+        researchQuestions: ["추후 연구 질문 작성"],
+        design: ["추후 연구 설계 요약 작성"],
+        findings: ["추후 연구 결과 요약 작성"],
+        interpretation: ["추후 결과 해석 작성"],
+        contributions: ["추후 기여성 작성"],
+        limitations: ["추후 한계성 작성"],
+        significance: ["추후 연구 의의 작성"],
+        connection: [connection || "추후 내 연구와의 연결점 작성"]
+      });
+      state.selectedPaperId = id;
+      saveState();
+      event.target.reset();
+      closeModal("paperModal");
+      renderAll();
+      setView("detailView");
+      toast("논문이 추가되었습니다.");
+    }
+
+    function exportBackup() {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `paper-briefing-backup-${todayKey}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toast("JSON 백업 파일을 내려받았습니다.");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderAll();
+
+      $$(".nav button[data-view]").forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
+      $$('[data-view-jump]').forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.viewJump)));
+      $("#searchInput").addEventListener("input", renderList);
+      $("#statusFilter").addEventListener("change", renderList);
+      $("#paperSelect").addEventListener("change", e => {
+        state.selectedPaperId = e.target.value;
+        renderAll();
+      });
+      $("#saveDailyBtn").addEventListener("click", () => {
+        state.dailyReports[todayKey] = $("#dailyText").value.trim();
+        saveState();
+        toast("오늘 리포트가 저장되었습니다.");
+      });
+      $("#exportBtn").addEventListener("click", exportBackup);
+      $("#markReviewedBtn").addEventListener("click", () => {
+        const p = currentPaper();
+        if (p) p.status = "Reviewed";
+        renderAll();
+        toast("Reviewed로 변경했습니다.");
+      });
+      $("#openAddPaper").addEventListener("click", () => openModal("paperModal"));
+      $("#openAddPaper2").addEventListener("click", () => openModal("paperModal"));
+      $("#paperForm").addEventListener("submit", addPaper);
+      $("#saveCommentBtn").addEventListener("click", saveComment);
+      $$('[data-close-modal]').forEach(btn => btn.addEventListener("click", () => closeModal(btn.dataset.closeModal)));
+
+      document.addEventListener("mouseup", () => {
+        window.setTimeout(() => {
+          const sel = getSelectionInsideAnnotatable();
+          if (sel) showFloatingComment(sel);
+        }, 0);
+      });
+      document.addEventListener("keydown", e => { if (e.key === "Escape") hideFloatingComment(); });
+      $("#floatingComment").addEventListener("click", () => {
+        if (!pendingSelection) return;
+        $("#selectedTextPreview").textContent = pendingSelection.text;
+        openModal("commentModal");
+        hideFloatingComment();
+        $("#commentInput").focus();
+      });
+      document.addEventListener("click", e => {
+        if (e.target.closest("#floatingComment") || e.target.closest(".modal-card")) return;
+        if (!window.getSelection()?.toString()) hideFloatingComment();
+      });
+    });
+  </script>
 </body>
 </html>
