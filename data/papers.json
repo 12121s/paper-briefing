@@ -32,5 +32,73 @@
     ],
     "pdf_deep_review_needed": true,
     "page": "papers/2605-22715v1.html"
+  },
+  {
+    "id": "2605-29771v1",
+    "citation": "arXiv 2605.29771v1",
+    "year": 2026,
+    "title": "Joint Angle Estimation with Customized Wristband Based on Online Incremental Learning",
+    "authors": "Shuo Wang, Xiaobin Chen, Xiaoming Tao",
+    "arxiv_id": "2605.29771v1",
+    "link": "https://arxiv.org/abs/2605.29771v1",
+    "published": "2026-05-28",
+    "categories": "cs.RO",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Intelligent wearable technology plays an increasingly important role in human-computer interaction, motion, and health monitoring. To ensure comfort and practicality of use, one common form for motion monitoring is to utilize soft wearable sensors. However, many research applications regarding wearable sensors are simplistic and difficult to adapt to different situations. This study proposes a system for estimating the angle of the wrist joint using a customized wristband based on an online incremental learning approach. It is a two-stage estimation method: the first stage updates the model based on the wearer's wrist movement characteristics using online learning, integrating real-time data from an IMU as ground truth. The second stage utilizes the updated model for estimation of wrist joint angle solely with the wristband. In other words, model training is completed during data acquisition, allowing the trained model to be used for subsequent angle estimation. This method offers advantages in adapting to data drift caused by variations in different testing configurations, such as the left and right wrists of the same subject, deviations in the wearing position on the same wrist, and even differences among various subjects. The results indicate that the sensors exhibit good performance under strain variations, and the wrist joint trajectory estimation of the proposed system has an approximate error of 15 degree in different scenarios."
+    ],
+    "relevance_score": 4,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": true,
+    "page": "papers/2605-29771v1.html"
+  },
+  {
+    "id": "2605-28279v1",
+    "citation": "arXiv 2605.28279v1",
+    "year": 2026,
+    "title": "IMU Propagation as Preintegration",
+    "authors": "Jianzhu Huai",
+    "arxiv_id": "2605.28279v1",
+    "link": "https://arxiv.org/abs/2605.28279v1",
+    "published": "2026-05-27",
+    "categories": "cs.RO",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "IMU preintegration is widely used in factor-graph-based visual--inertial, lidar--inertial, and radar--inertial state estimation, yet it is often treated as a specialized implementation separate from conventional IMU propagation. This note shows that IMU preintegration and propagation are equivalent realizations of the same underlying computation. We present a convention-agnostic view in which the preintegrated measurement, bias Jacobians, and covariance can be obtained by wrapping an existing IMU propagation routine, while a preintegration module can conversely recover state-transition matrices and propagated covariances. This perspective simplifies the reuse of existing propagation code, supports translation across different error-state definitions, and provides practical consistency checks for preintegration implementations. Experiments with random IMU sequences demonstrate close agreement between an RK4-based propagation implementation and GTSAM's tangent and manifold preintegration modules in the recovered Jacobians, covariances, and transition matrices."
+    ],
+    "relevance_score": 3,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": false,
+    "page": "papers/2605-28279v1.html"
   }
 ]
