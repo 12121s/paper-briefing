@@ -100,5 +100,73 @@
     ],
     "pdf_deep_review_needed": false,
     "page": "papers/2605-28279v1.html"
+  },
+  {
+    "id": "2606-02370v1",
+    "citation": "arXiv 2606.02370v1",
+    "year": 2026,
+    "title": "A Simulation Platform for Flapping-Wing Vehicles",
+    "authors": "Haichuan Li, Tomi Westerlund",
+    "arxiv_id": "2606.02370v1",
+    "link": "https://arxiv.org/abs/2606.02370v1",
+    "published": "2026-06-01",
+    "categories": "cs.RO",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Flapping-wing aerial vehicles (FWAVs) demonstrate remarkable agility but face substantial autonomy challenges due to their high sensitivity to aerodynamic disturbances and limited sensor payload capacity. Current simulation platforms typically rely on oversimplified laminar flow assumptions and idealized sensor models, failing to capture the complex turbulence patterns and perceptual limitations encountered in real-world operation. This simulation-to-reality discrepancy significantly impedes the development of robust autonomy systems for FWAVs. We introduce FWAV-Sim, a high-fidelity Unity-based simulation framework that integrates: (1) a composite aerodynamic model combining quasi-steady blade-element theory with bluff-body drag effects, (2) spatiotemporally correlated turbulence generation through fractal noise synthesis, and (3) realistic sensor simulation including noisy IMU measurements, LiDAR point clouds, and RGB camera feeds. Our platform enables scalable generation of synchronized datasets containing ground-truth vehicle states, aerodynamic forces, turbulent wind fields, and multi-modal sensor streams. Experimental validation demonstrates that autonomy pipelines (including both controllers and perception systems) developed in FWAV-Sim exhibit significantly improved simulation capability, thereby advancing the outstanding performance in simulation-based development for flapping-wing aerial systems."
+    ],
+    "relevance_score": 3,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": false,
+    "page": "papers/2606-02370v1.html"
+  },
+  {
+    "id": "2606-00825v1",
+    "citation": "arXiv 2606.00825v1",
+    "year": 2026,
+    "title": "SuperMemory-VQA: An Egocentric Visual Question-Answering Benchmark for Long-Horizon Memory",
+    "authors": "Samiul Alam, Shakhrul Iman Siam, Michael J. Proulx, James Fort, Richard Newcombe, Hyo Jin Kim, Mi Zhang",
+    "arxiv_id": "2606.00825v1",
+    "link": "https://arxiv.org/abs/2606.00825v1",
+    "published": "2026-05-30",
+    "categories": "cs.CV, cs.ET, cs.HC, cs.MA",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "AI glasses present a compelling platform for AI agents to serve as personalized memory assistants. To be genuinely useful, such systems must move beyond short-term video comprehension and address memory gaps that humans experience for practical, personal, or social purposes over longitudinal egocentric video streams. However, existing egocentric datasets predominantly focus on action recognition or generic QAs from short clips, measuring perceptual capabilities rather than realistic human memory needs. We introduce SuperMemory-VQA, an egocentric visual question answering (VQA) dataset for evaluating AI assistants on practical, long-horizon memory tasks. It contains 52.9 hours of everyday activities recorded with AI glasses, including synchronized RGB video, audio transcription, eye gaze, IMU, and SLAM trajectories. Through a human-verified annotation pipeline, we construct grounded 4,853 question-answer pairs that span object and location memory, intent recall, visual scene recall, timeline reconstruction, conversational memory, and in-context retrieval. Each question is posed as multiple-choice with an explicit \"unanswerable\" option to test hallucination robustness. Benchmarking leading agentic frameworks and LLM backbones reveals that existing systems remain far from reliable on real-world memory tasks, highlighting the need for new architectures for grounded AI memory that can answer only when evidence is sufficient. A participant survey further supports that our questions are realistic, useful, and aligned with everyday memory needs."
+    ],
+    "relevance_score": 3,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": false,
+    "page": "papers/2606-00825v1.html"
   }
 ]
