@@ -237,3 +237,27 @@ Generated reports/2026-06-03.html
 Generated 0 new paper candidates
 Updated data/papers.json and data/reports.json
 index.html was not modified
+[main 977c07f] auto: daily research briefing update
+ Committer: Ubuntu <azureuser@hymr.d12gacfqsdje3dnhf2ue0bowjd.lx.internal.cloudapp.net>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 3 files changed, 60 insertions(+)
+ create mode 100644 reports/2026-06-03.html
+To https://github.com/12121s/paper-briefing.git
+   44011ed..977c07f  main -> main
+=== DONE ===
+=== Daily Paper Briefing Pipeline ===
+arXiv rate limit: 429 Too Many Requests. Keeping previous data if available.
+Generated reports/2026-06-04.html
+Generated 0 new paper candidates
+Updated data/papers.json and data/reports.json
+index.html was not modified
