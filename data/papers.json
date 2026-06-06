@@ -168,5 +168,73 @@
     ],
     "pdf_deep_review_needed": false,
     "page": "papers/2606-00825v1.html"
+  },
+  {
+    "id": "2606-04609v1",
+    "citation": "arXiv 2606.04609v1",
+    "year": 2026,
+    "title": "CapSenseBand: Sustaining Cross-Disciplinary Creativity When Stitches Must Meet Signals",
+    "authors": "Sark Pangrui Xing, Hongci Hu, Lai Wei, Le Fang, Ziqian Bai, Kinor Shou-xiang Jiang, Stephen Jia Wang",
+    "arxiv_id": "2606.04609v1",
+    "link": "https://arxiv.org/abs/2606.04609v1",
+    "published": "2026-06-03",
+    "categories": "cs.HC",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Wearable sensing systems increasingly depend on textiles that are both materially wearable and electronically functional. Their design requires collaboration between textile designers, who reason through stitches, yarn behavior, and machine constraints, and interaction designers, who reason through electrodes, signal paths, and insulation. However, these forms of expertise do not easily translate across disciplinary boundaries. This poster presents CapSenseBand, a knitted capacitive-sensing wristband developed through a research-through-design process organized around Analysis, Synthesis, and Detailing. We document an artifact chain spanning material swatches, a rapid wearable prototype, Paper Models as shared negotiation surfaces, a double-layer knitted structure, and an insulated Swept Frequency Capacitive Sensing breakout board. We show how Paper Models functioned as boundary objects, helping collaborators externalize intent, negotiate spatial and technical constraints, and preserve disciplinary expertise while converging on a shared design. We contribute a reusable swatch-to-sleeve pattern for material-centered HCI: keep discipline-specific probes open early, then converge through artifacts that make material, spatial, and electronic decisions legible before fabrication locks them in."
+    ],
+    "relevance_score": 4,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": true,
+    "page": "papers/2606-04609v1.html"
+  },
+  {
+    "id": "2606-05234v1",
+    "citation": "arXiv 2606.05234v1",
+    "year": 2026,
+    "title": "OLIVE: Online Low-Rank Incremental Learning for Efficient Adaptive Exoskeletons",
+    "authors": "Dong Liu, Yanxuan Yu, Ben Lengerich, Tony Geng, Ying Nian Wu",
+    "arxiv_id": "2606.05234v1",
+    "link": "https://arxiv.org/abs/2606.05234v1",
+    "published": "2026-06-03",
+    "categories": "cs.RO, cs.LG",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Wearable exoskeleton systems hold promise for restoring mobility in individuals with physical impairments, yet most existing controllers rely on static gait policies that lack the ability to adapt to dynamic real-world environments or individual user characteristics. We present \\olive (\\underline{O}nline \\underline{L}ow-rank \\underline{I}ncremental Learning for Efficient Adapti\\underline{ve} Exoskeletons), a parameter-efficient online adaptation framework that continuously personalizes exoskeleton control during deployment. \\olive decomposes the adaptive component of the control policy into a low-rank residual form~$\\dW = \\At\\Bt^\\top$ with rank~$r!\\ll!\\min(d,k)$, reducing online update cost from $\\mathcal{O}(dk)$ to $\\mathcal{O}(r(d{+}k))$ while preserving the stability of a pretrained base controller~$\\Wz$. Parameters are updated via a reward-shaped policy gradient driven purely by on-body sensor feedback (EMG, IMU, vibration), eliminating dependence on offline reference trajectories. A gating mechanism modulates the strength of personalization based on contextual state, and a dynamic rank scheduler adapts the update dimensionality to terrain complexity -- allocating minimal capacity on simple flat terrain and expanding to higher-rank updates on demanding uneven surfaces -- enabling robust performance across diverse activities: flat walking, stair navigation, slopes, and uneven terrain. Experiments on the wearable platform demonstrate that \\olive achieves +13, +22, and +15 percentage-point improvements in gait smoothness, effort reduction, and motion stability over the strongest baseline, converging within $\\sim$1{,}800 walking steps at 7.4,ms end-to-end latency. Our code implementation is available at https://github.com/FastLM/OLIVE."
+    ],
+    "relevance_score": 4,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": true,
+    "page": "papers/2606-05234v1.html"
   }
 ]
