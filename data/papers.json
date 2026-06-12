@@ -338,5 +338,39 @@
     ],
     "pdf_deep_review_needed": false,
     "page": "papers/2606-08433v1.html"
+  },
+  {
+    "id": "2606-12988v1",
+    "citation": "arXiv 2606.12988v1",
+    "year": 2026,
+    "title": "A Machine Learning Framework for Real-Time Personalized Ergonomic Pose Analysis",
+    "authors": "Manex Atxa, Bruno Simoes, Julen Balzategui",
+    "arxiv_id": "2606.12988v1",
+    "link": "https://arxiv.org/abs/2606.12988v1",
+    "published": "2026-06-11",
+    "categories": "cs.CV, cs.AI",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "This paper introduces a new methodology for real-time prediction of ergonomic and non-ergonomic human poses using volumetric video data in three dimensions. Although the methodology was designed for ergonomic assessments, it can be adapted to other applications requiring real-time analysis of human posture. One aspect that makes this system stand out is its ability to analyze 3D point clouds during the assessment, enabling computation from multiple angles. This overcomes a critical limitation of cameras which provide often a fixed viewpoint, thereby restricting the data available for a thorough postural evaluation, especially when occlusions occur. The system continuously and automatically performs pose inference using the chosen perspective on the real-time streaming data; however, only the poses manually selected and labeled by the user are used to train the personalized deep learning classifier. The methodology has been refined through a case study in which RGB-D cameras captured subjects performing load-lifting tasks, enabling real-time skeletal labeling. The model was trained on this data and, following the training phase, performs inference on new streaming data in real time. This research offers a scalable and pragmatic approach for real-time ergonomic evaluation by combining state-of-the-art 3D data technologies and traditional 2D pose estimation algorithms. It addresses the increasing need for safety and health monitoring in workplace environments, marking a notable contribution to the domain."
+    ],
+    "relevance_score": 3,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": false,
+    "page": "papers/2606-12988v1.html"
   }
 ]
