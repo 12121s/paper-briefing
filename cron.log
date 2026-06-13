@@ -451,3 +451,27 @@ Generated reports/2026-06-12.html
 Generated 1 new paper candidates
 Updated data/papers.json and data/reports.json
 index.html was not modified
+[main 1d6b47f] auto: daily research briefing update
+ Committer: Ubuntu <azureuser@hymr.d12gacfqsdje3dnhf2ue0bowjd.lx.internal.cloudapp.net>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 5 files changed, 132 insertions(+)
+ create mode 100644 papers/2606-12988v1.html
+ create mode 100644 reports/2026-06-12.html
+To https://github.com/12121s/paper-briefing.git
+   4c24001..1d6b47f  main -> main
+=== DONE ===
+=== Daily Paper Briefing Pipeline ===
+Generated reports/2026-06-13.html
+Generated 1 new paper candidates
+Updated data/papers.json and data/reports.json
+index.html was not modified
