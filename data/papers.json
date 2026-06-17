@@ -440,5 +440,73 @@
     ],
     "pdf_deep_review_needed": false,
     "page": "papers/2606-14358v1.html"
+  },
+  {
+    "id": "2606-17741v1",
+    "citation": "arXiv 2606.17741v1",
+    "year": 2026,
+    "title": "A Wearable Multimodal Ultrasound+Inertial System for Real-Time Virtual Reality Interaction",
+    "authors": "Giusy Spacone, Sebastian Frey, Enzo Baraldi, Mattia Orlandi, Luca Benini, Andrea Cossettini",
+    "arxiv_id": "2606.17741v1",
+    "link": "https://arxiv.org/abs/2606.17741v1",
+    "published": "2026-06-16",
+    "categories": "eess.SY, cs.HC",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "A-mode ultrasound (US) is a promising sensing modality for Virtual Reality (VR) interaction, as it enables the mapping of muscular activity into control commands while retaining the benefits of wearable sensing. However, existing approaches still face limitations in terms of wearability and interaction complexity, often relying on external hardware such as cameras. In this work, we propose a fully wearable multimodal interface for real-time VR-interaction, based on concurrent US and inertial (accelerometry) sensing from the forearm and upper arm. The system is built on the WULPUS platform and integrates an end-to-end software framework for real-time acquisition, visualization, and communication with a Unity-based VR environment. A multimodal learning pipeline is introduced for concurrent hand pose and forearm position estimation in 2D space. The interface is evaluated through offline and online experiments with five subjects, during the execution of three functional tasks: cylinder grasping (gross motor) and relocation, marble pinching (fine motor) and relocation, and liquid pouring. For offline experiments, we collect 5 acquisition sessions across multiple days, achieving an average inter-session accuracy across subjects of 80$\\pm$6\\% for hand pose estimation and 77$\\pm$7\\% for forearm position estimation. Online validation with minimal fine-tuning (5 min) demonstrates success rates of 92.0$\\pm$16.0\\%, 88.0$\\pm$9.8\\%, and 96.0$\\pm$8.0\\% for the three tasks, respectively. With a power consumption of only 19.9~mW, our system enables more than 2.5 days of continuous use on a small 350 mAh LiPo battery without the need for recharge, enabling truly wearable, multimodal, and functionally meaningful VR interaction."
+    ],
+    "relevance_score": 3,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": false,
+    "page": "papers/2606-17741v1.html"
+  },
+  {
+    "id": "2606-17427v1",
+    "citation": "arXiv 2606.17427v1",
+    "year": 2026,
+    "title": "Impact of Hand Impairment and Occlusions on Hand Pose Estimation Accuracy in Augmented Reality Applications",
+    "authors": "Damian M. Manzone, Mathew Szymanowski, Olga Taran, Shuo Cai, Melissa Marquez-Chin, Tammy Zeng, Hardeep Singh, Cesar Marquez-Chin, José Zariffa",
+    "arxiv_id": "2606.17427v1",
+    "link": "https://arxiv.org/abs/2606.17427v1",
+    "published": "2026-06-16",
+    "categories": "cs.CV, cs.HC",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Mixed reality applications can be designed for hand rehabilitation. Augmented reality (AR) head mounted displays (HMDs) specifically allow for ecologically valid tasks because individuals can see their real environment and interact with real objects while receiving additional cues on the HMD. While these applications rely on accurate hand pose estimation, there is a gap in investigating the influence of hand impairment or occlusion from real-object interactions on pose estimation accuracy. Further, comparisons between AR HMD predictions and state-of-the-art pose estimation methods have not been established. The current study assessed pose estimation accuracy of the HoloLens 2 HMD and state-of-the-art pose estimation algorithms (WiLoR, HaMeR, WildHands, and MediaPipe) while individuals with cervical spinal cord injury (cSCI; n = 13, Neurological Level of Injury: C3-C6; American Spinal Injury Association Impairment Scale: A-D) and 15 uninjured controls interacted with clear and opaque objects. Ground truth estimates of 3D joint positions were generated via triangulation from a multi-camera setup. Pose estimation accuracy did not differ between the cSCI and uninjured control groups suggesting that 3D joint predictions from the HoloLens 2 and pose estimation algorithms can generalize to populations with hand impairment. Further, clear objects provided a small accuracy advantage over opaque objects (0.1 mm) and predictions from both WiLoR and HaMeR were slightly more accurate than the HoloLens 2 (2 mm). Overall, these results suggest that the HoloLens 2 may be viable for hand rehabilitation applications and the dataset generated can be used to refine pose estimation methods for hand-impaired populations."
+    ],
+    "relevance_score": 3,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": false,
+    "page": "papers/2606-17427v1.html"
   }
 ]
