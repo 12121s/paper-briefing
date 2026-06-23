@@ -576,5 +576,73 @@
     ],
     "pdf_deep_review_needed": false,
     "page": "papers/2606-19176v1.html"
+  },
+  {
+    "id": "2606-23292v1",
+    "citation": "arXiv 2606.23292v1",
+    "year": 2026,
+    "title": "Towards a Bathroom-Centered Human-Building Digital Twin Framework for Indoor Safety Analysis",
+    "authors": "Yuanzhi Su,  Huiying,  Hou",
+    "arxiv_id": "2606.23292v1",
+    "link": "https://arxiv.org/abs/2606.23292v1",
+    "published": "2026-06-22",
+    "categories": "cs.HC, cs.AI",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Bathroom use is a critical safety challenge for older adults because wet surfaces, constrained layouts, limited support, and frequent posture transitions are concentrated within a small domestic space. These conditions create risks that cannot be adequately understood by considering either the bathroom environment or human motion in isolation. Existing bathroom safety studies mainly identify hazards, accessibility problems, or design modifications, whereas human-centered sensing studies often focus on activity recognition or fall detection without sufficient semantic understanding of the surrounding environment. This separation limits the interpretation of how older adults interact with fixtures, support surfaces, wet areas, and spatial constraints during daily bathroom activities. To address this gap, this study proposes a bathroom-centered human-building digital twin framework for interaction-aware indoor safety analysis with a specific emphasis on older adult bathroom safety. The framework conceptualizes bathroom risk as a coupled human-environment process and integrates semantic bathroom representation, skeleton-based human representation, spatial-semantic coupling, interaction-aware event analytics, and safety-oriented visualization. A Unity-based proof-of-concept prototype is developed to demonstrate the feasibility of the framework. Although the current work remains a prototype-oriented investigation, it establishes a methodological basis for analyzing older adults' bathroom safety through explicit body-environment relations and for advancing privacy-sensitive, interaction-aware digital twin applications in aging-in-place residential environments."
+    ],
+    "relevance_score": 4,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": true,
+    "page": "papers/2606-23292v1.html"
+  },
+  {
+    "id": "2606-22837v1",
+    "citation": "arXiv 2606.22837v1",
+    "year": 2026,
+    "title": "CLIP-guided Diffusion Model for Backdoor Generation in Sensor-based Human Activity Recognition",
+    "authors": "Toby Briston, Illya Kosyk, Kuniyih S",
+    "arxiv_id": "2606.22837v1",
+    "link": "https://arxiv.org/abs/2606.22837v1",
+    "published": "2026-06-22",
+    "categories": "cs.LG, cs.AI, cs.CR",
+    "method": "strict arXiv abstract filter",
+    "status": "Candidate",
+    "keywords": [
+      "HCI",
+      "rehabilitation",
+      "wearable sensing",
+      "IMU / inertial sensing",
+      "biofeedback",
+      "assistive technology",
+      "movement assessment",
+      "posture assessment"
+    ],
+    "abstract": [
+      "Sensors are critical components of modern intelligent devices. The proliferation of the Internet of Things (IoT) and wearable mobile devices has enabled the integration of such sensors to monitor the environment and enable users to take predictive actions. Human activity recognition (HAR) is a popular application in which Inertial Measurement Unit (IMU)-based sensors, such as accelerometers and gyroscopes, are used to provide insights into health, training, and medical diagnosis. However, the accuracy of such a model is hindered by the lack of data. The diffusion model-based technique has proven successful in generating synthetic data for training HAR models. In this paper, we propose a backdoor training technique, IMU-DM-CLIP, that leverages a diffusion model to enable trigger-based attacks on HAR models. Our empirical analysis shows that the attack is successful even with a very small backdoor injection rate of 10\\% and 10\\% of the data guided for the diffusion model."
+    ],
+    "relevance_score": 4,
+    "reasons": [
+      "초록에서 사람의 움직임·자세·웨어러블/IMU 기반 평가와 연결되는 단서가 확인됩니다.",
+      "재활승마 연구의 기승자 균형·자세 변화 측정 및 시각/바이오피드백 설계 후보로 검토할 수 있습니다.",
+      "서비스디자인·참여디자인 관점에서는 치료사와 사용자가 이해 가능한 피드백 카드로 전환할 가치가 있습니다."
+    ],
+    "pdf_deep_review_needed": true,
+    "page": "papers/2606-22837v1.html"
   }
 ]
